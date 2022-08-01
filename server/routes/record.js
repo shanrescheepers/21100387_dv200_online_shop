@@ -13,28 +13,30 @@ const ObjectId = require("mongodb").ObjectId;
 
 
 // This section will help you get a list of all the records.
-recordRoutes.route("/record/:amount").get(function (req, res) {
+recordRoutes.route("/record/").get(function (req, res) {
     let db_connect = dbo.getDb("employees");
     db_connect
         .collection("payroll")
-        .find({ Jannie: req.params.amount })
+        .find()
         .toArray(function (err, result) {
             if (err) throw err;
             res.json(result);
         });
 });
 
-// This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
+// This section will help you get a single record from the list : artist name
+recordRoutes.route("/record/artist/:name").get(function (req, res) {
     let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
+    let myquery = { artist: req.params.name };
+    console.log(myquery)
     db_connect
-        .collection("records")
+        .collection("payroll")
         .findOne(myquery, function (err, result) {
             if (err) throw err;
             res.json(result);
         });
 });
+// Tayla McCurdy
 
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
