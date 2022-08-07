@@ -38,7 +38,8 @@ router.delete("/product/:id", async (req, res) => {
         .catch(error => res.status(500).json(error));
 });
 
-// Dont do this. This is not pragmatic, this is bad. Altyd pragmatic. Dankie.
+// Dont do this. This is not pragmatic, this is bad. Be pragmatic. Dankie.
+
 // router.delete('/api/deleteProduct/:id', async (req, res) => {
 //     const delProduct = await productSchema.remove({ _id: req.params.id });
 //     res.json(delProduct);
