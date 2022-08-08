@@ -21,6 +21,10 @@ const ProductSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    discount: {
+        type: Number,
+        required: false
+    },
     printMedium: {
         type: [String],
         required: true

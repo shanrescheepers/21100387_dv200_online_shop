@@ -1,13 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const routes = require('./routes/product');
+const productRoute = require('./routes/product');
+const artistRoute = require('./routes/artist');
 require('dotenv/config');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(routes);
+app.use(productRoute);
+app.use(artistRoute);
 
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
