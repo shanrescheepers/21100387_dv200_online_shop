@@ -5,6 +5,10 @@ const artistRoute = require('./routes/artist');
 require('dotenv/config');
 
 const app = express();
+// connect hier met ander localhost
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
