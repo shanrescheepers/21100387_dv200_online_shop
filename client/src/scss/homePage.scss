@@ -1,0 +1,66 @@
+.homepage {
+    &__backgroundimg {
+        width: auto;
+        height: 20px;
+
+        &__img {
+            height: 900px;
+            background-size: contain;
+        }
+    }
+
+    &__intro {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 1fr 1fr;
+        padding-top: 32px;
+        height: 300px;
+        grid-gap: 20px;
+
+        &__context {
+            height: 200px;
+            margin-top: 900px;
+            text-align: justify;
+            padding-left: 150px;
+        }
+
+        &__artists {
+            height: 200px;
+            margin-top: 900px;
+            text-align: justify;
+            padding-left: 150px;
+            grid-gap: 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+
+
+
+            &__tayla {
+                height: 200px;
+                width: 200px;
+                align-self: start;
+
+            }
+
+            &__chrisjan {
+                height: 150px;
+                width: auto;
+                align-self: start;
+
+            }
+
+            &__shanre {
+                height: 200px;
+                width: 200px;
+                padding-left: 20px;
+            }
+
+            &__cathan {
+                height: 200px;
+                width: 200px;
+                padding-left: 60px;
+            }
+        }
+    }
+}

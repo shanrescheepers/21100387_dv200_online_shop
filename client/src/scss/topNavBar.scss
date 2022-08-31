@@ -1,0 +1,62 @@
+.navbar {
+
+    &__toolbar {
+        grid-row: auto;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+        background-color: #202020;
+        height: 140px;
+
+        &__name {
+            color: #B6AF93;
+            padding-left: 630px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        &__logo {
+            padding: 8px;
+
+
+            &__img {
+                height: 100px;
+                background-size: contain;
+                align-items: center;
+                display: grid;
+                margin-left: 40px;
+                padding: 8px;
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+
+        }
+
+        &__icons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr auto;
+            padding: 32px;
+            margin-left: 200px;
+            color: #B6AF93;
+            cursor: pointer;
+        }
+
+        &__links {
+            color: #B6AF93;
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            align-self: auto;
+            padding: 32px;
+            margin: 32px;
+            text-align: justify;
+            text-align: left;
+            align-self: baseline;
+        }
+
+
+    }
+}
