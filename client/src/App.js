@@ -3,7 +3,7 @@ import { Router } from 'react-router-dom';
 import './App.scss';
 import TopNavBar from './components/TopNavBar';
 import Homepage from './pages/HomePage';
-import LoginSignUp from './pages/LoginSignup';
+import AdminLogin from './pages/AdminLogin';
 import ShopImages from './pages/PrintShop';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       <TopNavBar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginSignUp />} />
+          <Route path="/login" element={<AdminLogin />} />
           <Route path="/homepage" element={<Homepage />} />
           {/* {/* <Route path="/printshop" element={<Homepage />} /> */}
           <Route path="/printshop" element={<ShopImages />} />
