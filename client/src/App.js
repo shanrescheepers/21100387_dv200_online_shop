@@ -5,6 +5,7 @@ import TopNavBar from './components/TopNavBar';
 import Homepage from './pages/HomePage';
 import AdminLogin from './pages/AdminLogin';
 import ShopImages from './pages/PrintShop';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<AdminLogin />} />
+          <Route path="/adminmanager" element={<AdminPage />} />
           <Route path="/homepage" element={<Homepage />} />
           {/* {/* <Route path="/printshop" element={<Homepage />} /> */}
           <Route path="/printshop" element={<ShopImages />} />

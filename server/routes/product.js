@@ -1,7 +1,23 @@
 const express = require('express');
+const router = express();
+const path = require('path');
+const multer = require('multer');
 const { Product } = require('../models/product');
 
-const router = express();
+// Multer Middleware hier + Storing is letterlik storing. Doen eerste : vir First Initialisation
+const galleryPhotographStoring = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, './wildlifeGalleryImages');
+    },
+    filename: (req, file, callBack) => {
+        console.log(file)
+        callBack(null, Date.now() + path.extname(file.originalname))
+    }
+});
+
+const uploadGalleryPhotograph = multer({ storage: galleryPhotographStoring })
+
+
 // READ EERSTE
 router.get('/products', async (req, res) => {
     await Product.find()
@@ -15,13 +31,15 @@ router.get('/product/:id', async (req, res) => {
 });
 
 // CREATE TWEEDE
-router.post('/product', async (req, res) => {
-    const product = new Product({ ...req.body });
-
-    await product.save()
-        .then(response => res.json(response))
-        .catch(error => res.status(500).json(error));
-});
+router.post('/product', uploadGalleryPhotograph.single('image'),
+    (req, res) => {
+        console.log(req.body)
+        // let product = new Product({ ...req.body });
+        // product.imgUrl = req.file.filename
+        // product.save()
+        // .then(response => res.json(response))
+        // .catch(error => res.status(500).json(error));
+    });
 
 // UPDATE
 router.put('/product/:id', async (req, res) => {
@@ -59,5 +77,6 @@ router.delete("/product/:id", async (req, res) => {
 //     )
 //     res.json(updroduct);
 // })
+
 
 module.exports = router;
