@@ -10,7 +10,7 @@ const galleryPhotographStoring = multer.diskStorage({
         callBack(null, './wildlifeGalleryImages');
     },
     filename: (req, file, callBack) => {
-        console.log(file)
+        console.log(file);
         callBack(null, Date.now() + path.extname(file.originalname))
     }
 });
@@ -39,7 +39,7 @@ router.post('/product', uploadGalleryPhotograph.single('image'),
         // console.log("Date: ", req.body.date)
         // console.log("Information: ", JSON.parse(req.body.information))
         let data = JSON.parse(req.body.information)
-        console.log(data);
+        // console.log(data);
   
         let product = new Product({
             date: data.date,
@@ -67,7 +67,7 @@ router.post('/product', uploadGalleryPhotograph.single('image'),
             image: req.file.filename
         });
 
-        console.log("Product: ", product);
+        // console.log("Product: ", product);
         product.save()
         .then(item => {
             res.json(item);
@@ -78,7 +78,7 @@ router.post('/product', uploadGalleryPhotograph.single('image'),
         // .then(response => 
         //     res.json(response))
         // .catch(error => res.status(500).json(error));
-    });
+});
 
 // UPDATE
 router.put('/product/:id', async (req, res) => {
@@ -86,13 +86,18 @@ router.put('/product/:id', async (req, res) => {
     await Product.updateOne({ id }, req.body)
         .then(response => res.json(response))
         .catch(error => res.status(500).json(error));
-})
+});
 
 // DELETE
 router.delete("/product/:id", async (req, res) => {
+
+    console.log("Delete");
+    console.log(req.params);
+
     await Product.findByIdAndDelete(req.params.id)
         .then(response => res.json(response))
-        .catch(error => res.status(500).json(error));
+        .catch(error => res.status(500).json(error))
+
 });
 
 // Dont do this. This is not pragmatic, this is bad. Be pragmatic. Dankie.

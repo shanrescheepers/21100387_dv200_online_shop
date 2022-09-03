@@ -13,7 +13,7 @@ app.use(cors({
 }));
 
 // image middleware hier
-app.use('galleryPhotographs', express.static('galleryPhotographs'))
+app.use('/wildlifeGalleryImages', express.static('wildlifeGalleryImages'))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
