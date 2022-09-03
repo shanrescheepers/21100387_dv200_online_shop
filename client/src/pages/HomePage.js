@@ -22,8 +22,10 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 
 
-export function Homepage() {
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
+export function Homepage() {
 
     return (
         <div className='homepage'>
@@ -107,6 +109,26 @@ export function Homepage() {
 
                     </div>
                 </div >
+            </div>
+            <div className='homepage__featureitems'>
+                <div className='homepage__featureitems-title'>
+                    <h3 >LATEST ARTWORKS</h3>
+                </div>
+
+                <Carousel className='homepage__featureitems__carousel'>
+                    <div>
+                        <img src={bg} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                    </div>
+                    <div>
+                        <img src={chrisjan} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                    </div>
+                    <div>
+                        <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                    </div>
+                    <div>
+                        <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                    </div>
+                </Carousel>
             </div>
         </div >
 
