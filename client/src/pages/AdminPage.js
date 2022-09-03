@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -32,6 +33,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 import { useEffect, useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
+import axios from 'axios';
 
 
 // TABLE
@@ -163,7 +165,66 @@ function srcset(image, width, height, rows = 2, cols = 4) {
 }
 
 
+
+
 export function AdminPage() {
+
+    const [products, setProducts] = useState([]);
+    const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
+    
+    
+    const deleteProduct = (id, name) => {
+        console.log("Delete Product ", id);
+        if (window.confirm("Are you sure you want to delete: " + name) === true) {
+            axios.delete('http://localhost:5000/product/' + id).then(res => {
+                console.log(res);
+                setGatherRenderedProductInfo(true)
+            })
+
+        }
+    }
+
+    useEffect(() => {
+
+        Axios.get('http://localhost:5000/products').then(res => {
+
+            let data = res.data;
+            console.log(data);
+            const photoItem = data.map((item) => 
+                <ImageListItem key={item._id} cols={1} rows={1}>
+                    {console.log(item)}
+                    {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" +item.image)}
+                    <img
+                        {...srcset("http://localhost:5000/wildlifeGalleryImages/" +item.image, 300, 100,  1,  1)}
+                        alt={item.name}
+                        loading="lazy"
+                        style={{ borderRadius: "8px" }} />
+                    <ImageListItemBar style={{ borderRadius: "8px" }}
+                        sx={{
+                            background:
+                                'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
+                                'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                        }}
+                        title={item.name}
+                        position="top"
+                        actionIcon={
+                            // Hoekom werk dit?!?!?!?!? Daai onClick met => function
+                            <Button variant="outlined" onClick={()=>{deleteProduct(item._id, item.name)}} startIcon={<DeleteIcon />}>
+                                Delete
+                            </Button>
+                        }
+                    actionPosition="left"
+                />
+            </ImageListItem>
+            );
+            console.log(photoItem);
+            setProducts(photoItem)
+            // setGatherProductInfo(photoItem)
+            // om 'n infinite loop te stop
+            setGatherRenderedProductInfo(false)
+
+        })
+    }, [gatherRenderedProductInfo])
 
     const [addProduct, setAddProduct] = useState({
         description: '',
@@ -234,12 +295,15 @@ export function AdminPage() {
         // console.log(JSON.stringify(payloadData);
 
         Axios.post('http://localhost:5000/product', payloadData).then(() => {
+            setGatherRenderedProductInfo(true)
+
             setOpenSnackbar(true)
         }).catch(err => {
             alert(err)
         }).finally(() => {
             setOpen(false)
         });
+
     }
 
     const handleAddedNewProductChange = (event) => {
@@ -390,35 +454,7 @@ export function AdminPage() {
                     rowHeight={200}
                     gap={8}>
 
-                    {itemData.map((item) => {
-                        const cols = item.featured ? 2 : 1;
-                        const rows = item.featured ? 2 : 1;
-
-                        return (
-                            <ImageListItem key={item.img} cols={cols} rows={rows}>
-                                <img
-                                    {...srcset(item.img, 300, 100, rows, cols)}
-                                    alt={item.title}
-                                    loading="lazy"
-                                    style={{ borderRadius: "8px" }} />
-                                <ImageListItemBar style={{ borderRadius: "8px" }}
-                                    sx={{
-                                        background:
-                                            'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-                                            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                                    }}
-                                    title={item.title}
-                                    position="top"
-                                    actionIcon={
-                                        <IconButton>
-                                            <AddPhotoAlternateRoundedIcon />
-                                        </IconButton>
-                                    }
-                                    actionPosition="left"
-                                />
-                            </ImageListItem>
-                        );
-                    })}
+                    {products}
                 </ImageList>
             </div>
 
@@ -449,87 +485,6 @@ export function AdminPage() {
 
     )
 }
-const itemData = [
-    {
-        img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-        title: 'Breakfast',
-        author: '@bkristastucchio',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        title: 'Burger',
-        author: '@rollelflex_graphy726',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-        title: 'Camera',
-        author: '@helloimnik',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-        title: 'Coffee',
-        author: '@nolanissac',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-        title: 'Hats',
-        author: '@hjrc33',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-        title: 'Honey',
-        author: '@arwinneil',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-        title: 'Basketball',
-        author: '@tjdragotta',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-        title: 'Fern',
-        author: '@katie_wasserman',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-        title: 'Mushrooms',
-        author: '@silverdalex',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-        title: 'Tomato basil',
-        author: '@shelleypauls',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-        title: 'Sea star',
-        author: '@peterlaster',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-        title: 'Bike',
-        author: '@southside_customs',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-        title: 'Bike',
-        author: '@southside_customs',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-        title: 'Bike',
-        author: '@southside_customs',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-        title: 'Bike',
-        author: '@southside_customs',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-        title: 'Bike',
-        author: '@southside_customs',
-    },
-];
+
 
 export default AdminPage;
