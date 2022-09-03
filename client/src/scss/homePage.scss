@@ -61,7 +61,7 @@
 
         h2 {
             padding-top: 50px;
-            margin-left: 50px;
+
         }
 
         &__name {
@@ -69,7 +69,6 @@
             display: grid;
             grid-template-columns: auto auto auto auto;
             height: 200px;
-
             grid-gap: 32px;
             justify-self: center;
         }
@@ -95,18 +94,33 @@
         justify-content: center;
         padding-top: 40px;
 
+        .artworks,
+        h2 {
+            margin-top: 40px;
+            margin-left: 610px;
+            width: 200px;
 
-        h3 {
-            display: grid;
-            padding-top: 50px;
-            justify-content: center;
-            grid-template-rows: auto;
+            &__hr {
+                border: 3px solid black;
+                height: 2px;
+            }
         }
 
+
         &__carousel {
-            width: 500px;
+            width: auto;
             display: grid;
             padding-bottom: 50px;
+
+            &__text {
+                font-size: 12px;
+
+                &__textbody {
+                    font-size: 10px;
+                }
+            }
+
+
 
             g button {
                 background-color: black;
@@ -124,25 +138,30 @@
 
             .carousel.carousel-slider .control-arrow:hover {
                 background: rgba(0, 0, 0, 0.2);
+                background-color: transparent !important;
             }
 
             .carousel.carousel-slider {
                 margin: 0;
+                margin-top: 150px !important;
                 overflow: hidden;
                 height: 400px !important;
-                width: 400px !important;
+                width: auto !important;
                 align-items: center !important;
                 display: grid !important;
                 justify-content: center;
+                padding-bottom: 20px;
             }
 
             .carousel .control-next.control-arrow:before {
                 border-left: 8px solid #181818 !important;
+
             }
 
             .carousel .thumb.selected,
             .carousel .thumb:hover {
                 border: none !important;
+                background-color: transparent !important;
             }
 
             .carousel .thumb:focus {
@@ -152,6 +171,7 @@
 
             .carousel .control-prev.control-arrow:before {
                 border-right: 8px solid #181818 !important;
+
             }
 
 
@@ -180,4 +200,140 @@
             }
         }
     }
+
+    &__discounteditems {
+        display: grid;
+        height: 300px;
+        grid-auto-rows: auto;
+        width: auto;
+        // hier is waar jy waas
+        grid-template-columns: 50% auto;
+        justify-content: center;
+        padding-top: 40px;
+        margin-top: 350px;
+
+        &__featureitems {
+            grid-template-columns: auto;
+            text-align: center;
+
+            .discount {
+
+                justify-content: center;
+
+            }
+
+            .discounthr {
+                border: 0.1px solid black;
+                width: 150px;
+            }
+
+
+            &__carousel {
+                width: auto;
+                display: grid;
+                padding-bottom: 50px;
+                height: 450px !important;
+
+
+
+
+                &__text {
+                    font-size: 12px;
+
+                    &__textbody {
+                        font-size: 10px;
+                    }
+                }
+
+                g button {
+                    background-color: black;
+                }
+
+                .carousel.carousel-slider .control-arrow {
+                    top: 0;
+                    color: black !important;
+                    font-size: 26px;
+                    bottom: 0;
+                    margin-top: 0;
+                    padding: 5px;
+                }
+
+                .carousel.carousel-slider .control-arrow:hover {
+                    background: rgba(0, 0, 0, 0.2);
+                    background-color: transparent !important;
+                }
+
+                .carousel.carousel-slider {
+                    margin: 0;
+
+                    height: 350px !important;
+                    width: auto !important;
+                    align-items: center !important;
+                    display: grid !important;
+                    justify-content: center;
+                    padding-bottom: 50px;
+                }
+
+                // margin: 0;
+                // margin-top: 150px !important;
+                // overflow: hidden;
+                // height: 440px !important;
+                // width: auto !important;
+                // align-items: center !important;
+                // display: grid !important;
+                // justify-content: center;
+
+
+                .carousel .control-next.control-arrow:before {
+                    border-left: 8px solid #181818 !important;
+
+                }
+
+                .carousel .thumb.selected,
+                .carousel .thumb:hover {
+                    border: none !important;
+                    background-color: transparent !important;
+                }
+
+                .carousel .thumb:focus {
+                    border: none !important;
+                    outline: none !important;
+                }
+
+                .carousel .control-prev.control-arrow:before {
+                    border-right: 8px solid #181818 !important;
+
+                }
+
+
+                .carousel .thumb {
+
+                    display: inline-block;
+                    margin-right: 6px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    border: 3px solid #fff;
+                    padding: 2px;
+                }
+
+                .carousel .carousel-status {
+
+                    top: 0;
+                    right: 0;
+                    padding: 5px;
+                    font-size: 10px;
+                    text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.9) !important;
+                    color: transparent !important;
+                }
+
+                .carousel {
+                    display: none;
+                }
+
+
+            }
+        }
+
+    }
+
 }

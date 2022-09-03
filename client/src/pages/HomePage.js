@@ -12,15 +12,17 @@ import shanre from '../image folder/shanshan.svg'
 import chrisjan from '../image folder/chrischris.svg'
 import cathan from '../image folder/catcat.svg'
 import rhino from '../image folder/rhinobaby.svg'
+import buffalo from '../image folder/buffalo.svg'
 import '../fonts/Calligraffitti-Regular.ttf'
 import '../scss/homePage.scss';
 
-
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import CardActions, { IconButton } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
-
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -42,7 +44,7 @@ export function Homepage() {
                             Chosen the path of dust and roars of lions at night, following animal footsteps the next morning and afternoon, these artists are of the leading inspirationals within the safari and conservation industry.
                             <br />
                             <br />
-                            Frm famed safari guides to our front running wildlife protectors, these artists share the same passion and love we'd hope to see in everyone who ventures forth within the wilderness and beyond, whether for pleasure or purpose.
+                            From famed and humbled safari guides to our front running wildlife protectors, these artists and naturalists share the same passion and love we'd hope to see in everyone who ventures forth within the wilderness and beyond, whether for pleasure or purpose.
                             These images all tell a story, depicting the deep conenction of man and wild. These relationships are and will be long saught after.
                             <br />
                             <br />
@@ -60,7 +62,7 @@ export function Homepage() {
 
                 <div className='homepage__artists'>
                     <h2 variant="h4" >
-                        THE ARTISTS
+                        THE ARTISTS <hr style={{ width: "200px" }}></hr>
                     </h2>
                     <div className='homepage__artists__artist'>
                         <Card style={{ backgroundColor: "#1E1E1E", width: "135px", height: "220px" }}>
@@ -111,14 +113,40 @@ export function Homepage() {
                 </div >
             </div>
             <div className='homepage__featureitems'>
-                <div className='homepage__featureitems-title'>
-                    <h3 >LATEST ARTWORKS</h3>
-                </div>
+
+                <h2 className='artworks' >LATEST ARTWORKS <hr ></hr></h2>
+
+
 
                 <Carousel className='homepage__featureitems__carousel'>
                     <div>
-                        <img src={bg} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+
+                        <Card >
+                            <CardMedia>
+                                <img src={buffalo} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                            </CardMedia>
+                            <CardContent>
+                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
+                                    Buffalo Cow
+                                </Typography>
+                                {/* PULLS */}
+                                <Typography className='homepage__featureitems__carousel__text__textbody'>
+                                    Shanre Scheepers - Buffalo - The Stare
+                                    <hr style={{ width: "100px" }} />
+                                    R 5000
+                                </Typography>
+                            </CardContent>
+                            <IconButton>
+                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                            </IconButton>
+                            <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                                SHOP PRINTS
+                            </Button>
+                        </Card>
                     </div>
+
+
+
                     <div>
                         <img src={chrisjan} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
                     </div>
@@ -128,7 +156,61 @@ export function Homepage() {
                     <div>
                         <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
                     </div>
+
+
+
                 </Carousel>
+
+
+            </div>
+
+            <div className='homepage__discounteditems'>
+                <div className='homepage__discounteditems__featureitems'>
+
+                    <h2 className='discount' style={{ textAlign: "center", paddingBottom: "15px" }} >DISCOUNTS<hr className='discounthr' ></hr></h2>
+
+
+
+                    <Carousel className='homepage__discounteditems__featureitems__carousel'>
+                        <div>
+
+                            <Card >
+                                <CardMedia>
+                                    <img src={buffalo} className="homepage__discounteditems__intro__image" style={{ height: "160px", margin: "none" }} />
+                                </CardMedia>
+                                <CardContent>
+                                    <Typography gutterBottom className='homepage__homepage__discounteditems__featureitems__carousel__text'>
+                                        Buffalo Cow
+                                    </Typography>
+                                    {/* PULLS */}
+                                    <Typography className='homepage__discounteditems__featureitems__carousel__text__textbody'>
+                                        Shanre Scheepers - Buffalo - The Stare
+                                        <hr style={{ width: "100px" }} />
+                                        R 5000
+                                    </Typography>
+                                </CardContent>
+                                <IconButton>
+                                    <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                                </IconButton>
+                                <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                                    SHOP PRINTS
+                                </Button>
+                            </Card>
+                        </div>
+
+
+
+                        <div>
+                            <img src={chrisjan} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                        </div>
+                        <div>
+                            <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                        </div>
+                        <div>
+                            <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                        </div>
+                    </Carousel>
+                </div>
             </div>
         </div >
 
