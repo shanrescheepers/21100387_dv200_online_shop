@@ -33,11 +33,50 @@ router.get('/product/:id', async (req, res) => {
 // CREATE TWEEDE
 router.post('/product', uploadGalleryPhotograph.single('image'),
     (req, res) => {
-        console.log(req.body)
-        // let product = new Product({ ...req.body });
-        // product.imgUrl = req.file.filename
-        // product.save()
-        // .then(response => res.json(response))
+        
+        // let data = JSON.parse(req.body);
+        // console.log("Post: ", req.body)
+        // console.log("Date: ", req.body.date)
+        // console.log("Information: ", JSON.parse(req.body.information))
+        let data = JSON.parse(req.body.information)
+        console.log(data);
+  
+        let product = new Product({
+            date: data.date,
+            description: data.description,
+            name: data.name,
+            price: {
+                v0: data.price.v0, 
+                v1: data.price.v1,
+                v2: data.price.v2
+            },
+            discount: data.discount,
+            printMedium: {
+                v0: data.printMedium.v0, 
+                v1: data.printMedium.v1,
+                v2: data.printMedium.v2
+            },
+            size: {
+                v0: data.size.v0, 
+                v1: data.size.v1,
+                v2: data.size.v2
+            },
+            artist: data.artist,
+            category: data.category,
+            stock: data.stock,
+            image: req.file.filename
+        });
+
+        console.log("Product: ", product);
+        product.save()
+        .then(item => {
+            res.json(item);
+        })
+        .catch(err => {
+            res.status(400).json({msg: "There was an error ", err: err});
+        })
+        // .then(response => 
+        //     res.json(response))
         // .catch(error => res.status(500).json(error));
     });
 

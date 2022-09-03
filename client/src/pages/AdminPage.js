@@ -186,15 +186,54 @@ export function AdminPage() {
         setOpen(false);
     };
 
+    const [newProductImage, setNewProductImage] = useState()
+    const [imageName, setImagename] = useState("upload image")
 
+    const getImage = (e) => {
+        let imageFile = e.target.files[0];
+        setNewProductImage(imageFile);
+        let value = e.target.value;
+        let imageName = value.substring(12);
+        setImagename(imageName);
+        let reader = new FileReader();
+        reader.onload = () => {
+            let output = document.getElementById('imagePreview');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    }
+    const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
     const handleSubmit = () => {
-        let placeholderProduct = new FormData()
-        placeholderProduct.append("product info", JSON.stringify(addProduct));
-        placeholderProduct.append("image", newProductImage)
-        console.log(newProductImage)
+        const payloadData = new FormData()
+        var myDate = Date.now()
+        // console.log(myDate);
 
-        Axios.post('http://localhost:5000/product', placeholderProduct).then(() => {
+        let price1 = addProduct.price
+        let price2 = Math.round(addProduct.price/1.8)
+        let price3 = Math.round(price2-170)
+
+        let payload = {
+            date: myDate,
+            name: addProduct.name,
+            description: addProduct.description,
+            price:  {v0:price1, v1: price2, v2: price3},
+            discount: addProduct.discount,
+            printMedium: 
+                {v0:"Stretched Canvas", v1: "Loose Canvas", v2: "Matte Fine Art Paper"},
+            artist: addProduct.artist,
+            size:  {v0:"A1 - ", v1: "200", v2: "300"},
+            category: addProduct.category,
+            stock: addProduct.stock
+        }
+
+        payloadData.append("information", JSON.stringify(payload));
+
+        payloadData.append("image", newProductImage);
+    
+        // console.log(JSON.stringify(payloadData);
+
+        Axios.post('http://localhost:5000/product', payloadData).then(() => {
             setOpenSnackbar(true)
         }).catch(err => {
             alert(err)
@@ -217,23 +256,7 @@ export function AdminPage() {
         //   }
         // })
     };
-    const [newProductImage, setNewProductImage] = useState()
-    const [imageName, setImagename] = useState("upload image")
-
-    const getImage = (e) => {
-        let imageFile = e.target.files[0];
-        setNewProductImage(imageFile);
-        let value = e.target.value;
-        let imageName = value.substring(12);
-        setImagename(imageName);
-        let reader = new FileReader();
-        reader.onload = () => {
-            let output = document.getElementById('imagePreview');
-            output.src = reader.result;
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    }
-    const [openSnackbar, setOpenSnackbar] = React.useState(false);
+    
 
     return (
         <div className='adminpage'>

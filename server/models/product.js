@@ -1,15 +1,8 @@
 const mongoose = require('mongoose');
-
+let newDate = new Date();
 const ProductSchema = mongoose.Schema({
-    color: {
-        type: [String],
-        required: true
-    },
+    date:{ type: Number},
     description: {
-        type: String,
-        required: true
-    },
-    imgUrl: {
         type: String,
         required: true
     },
@@ -18,24 +11,24 @@ const ProductSchema = mongoose.Schema({
         required: true
     },
     price: {
-        type: [Number],
-        required: true
+        v0: { type: Number,required: true},
+        v1: { type: Number,required: true},
+        v2: { type: Number,required: true},
     },
     discount: {
         type: Number,
         required: false
     },
     printMedium: {
-        type: [String],
-        required: true
+        v0: { type: String,required: true},
+        v1: { type: String,required: true},
+        v2: { type: String,required: true},
     },
-    range: {
-        type: String,
-        required: true
-    },
+ 
     size: {
-        type: [String],
-        required: true
+        v0: { type: String,required: true},
+        v1: { type: String,required: true},
+        v2: { type: String,required: true},
     },
     artist: {
         type: String,
@@ -49,6 +42,7 @@ const ProductSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    image: {type: String,required: true}
 });
 
 const Product = mongoose.model("Product", ProductSchema);
