@@ -19,9 +19,12 @@ export function ShopImages() {
     useEffect(() => {
         Axios.get('http://localhost:5000/products').then(res => {
             let data = res.data;
-            const photoItem = data.map((photo) => < IndividualProductCard
+            console.log(data);
+            const photoItem = data.map((photo) => 
+            
+            <IndividualProductCard
                 key={photo._id} name={photo.name}
-                imgUrl={photo.imgUrl} price={photo.price} artist={photo.artist}
+                imgUrl={"http://localhost:5000/wildlifeGalleryImages/" +photo.image} price={photo.price.v1} artist={photo.artist}
                 description={photo.description}
             />);
 

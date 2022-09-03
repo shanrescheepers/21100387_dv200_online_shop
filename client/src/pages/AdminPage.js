@@ -192,7 +192,7 @@ export function AdminPage() {
             console.log(data);
             const photoItem = data.map((item) => 
                 <ImageListItem key={item._id} cols={1} rows={1}>
-                    {console.log(item)}
+
                     {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" +item.image)}
                     <img
                         {...srcset("http://localhost:5000/wildlifeGalleryImages/" +item.image, 300, 100,  1,  1)}

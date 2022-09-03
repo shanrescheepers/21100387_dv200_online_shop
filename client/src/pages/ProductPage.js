@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import '../scss/productCards.scss';
 
 // individual product cards
-const IndividualProductCard = (props) => {
+const ProductPage = (props) => {
 
 
     return (
@@ -37,4 +37,4 @@ const IndividualProductCard = (props) => {
     )
 }
 
-export default IndividualProductCard;
+export default ProductPage;
