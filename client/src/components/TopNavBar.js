@@ -49,9 +49,10 @@ export function TopNavBar() {
                             ></Link> */}
                         </div>
                         <div className='navbar__toolbar__icons' >
-                            <AddShoppingCartIcon style={{ paddingRight: "16px", color: "wheat" }}></AddShoppingCartIcon>
-                            <InstagramIcon style={{ paddingRight: "16px", color: "wheat" }}></InstagramIcon>
-                            <MailIcon style={{ paddingRight: "16px", color: "wheat" }}></MailIcon>
+                            <a key="Email" component="a" href="/cartpage" style={{ paddingRight: "16px", color: "wheat" }} ><AddShoppingCartIcon></AddShoppingCartIcon></a>
+                            <a key="Email" component="a" href="https://www.instagram.com/africanamazing/?hl=en" style={{ paddingRight: "16px", color: "wheat" }} ><InstagramIcon style={{ paddingRight: "16px", color: "wheat" }}></InstagramIcon></a>
+                            <a key="Email" component="a" href="mailto:name@email.com" style={{ paddingRight: "16px", color: "wheat" }} ><MailIcon></MailIcon></a>
+                            {/* */}
                         </div>
                     </Toolbar>
 
