@@ -7,7 +7,7 @@ import AdminLogin from './pages/AdminLogin';
 import ShopImages from './pages/PrintShop';
 import AdminPage from './pages/AdminPage';
 import './fonts/Calligraffitti-Regular.ttf'
-
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/printshop" element={<ShopImages />} />
         </Routes>
       </BrowserRouter>
-
+      <Footer />
     </div>
   );
 }

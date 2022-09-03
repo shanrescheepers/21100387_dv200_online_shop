@@ -15,14 +15,14 @@ import rhino from '../image folder/rhinobaby.svg'
 import buffalo from '../image folder/buffalo.svg'
 import '../fonts/Calligraffitti-Regular.ttf'
 import '../scss/homePage.scss';
-
+import logo from '../assets/logo.svg'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import CardActions, { IconButton } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -212,6 +212,7 @@ export function Homepage() {
                     </Carousel>
                 </div>
             </div>
+
         </div >
 
     )

@@ -28,15 +28,15 @@ export function TopNavBar() {
 
                         <img src={logo} className="navbar__toolbar__logo__img" />
                         <div className='navbar__toolbar__links' >
-                            <Link href="/" underline="hover">
+                            <Link href="/" underline="hover" style={{ color: "wheat" }}>
                                 HOME
                             </Link>
 
-                            <Link href="/printshop" underline="hover">
+                            <Link href="/printshop" underline="hover" style={{ color: "wheat" }}>
                                 PRINT SHOP
                             </Link>
 
-                            <Link href="/theartists" underline="hover">
+                            <Link href="/theartists" underline="hover" style={{ color: "wheat" }}>
                                 THE ARTISTS
                             </Link>
                             {/* <Link to="/" className='navbar__toolbar__link'

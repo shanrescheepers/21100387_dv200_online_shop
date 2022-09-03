@@ -1,0 +1,34 @@
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #202020;
+    height: 300px;
+    margin-top: 220px;
+
+    &__hds {
+        padding-top: 100px;
+        color: rgba(245, 222, 179, 0.736);
+    }
+
+    &__c {
+        padding-top: 80px;
+        color: rgba(245, 222, 179, 0.736);
+    }
+
+    &__logo {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        height: 100px;
+        padding: 100px;
+    }
+
+    &__socials {
+        color: wheat;
+        height: 30px;
+        display: grid;
+        margin-left: 140px;
+        padding: 130px;
+        grid-gap: 20px;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
