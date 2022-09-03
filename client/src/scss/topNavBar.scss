@@ -5,7 +5,7 @@
         grid-row: auto;
         align-items: center;
         display: grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 100px 100px 100px 100px;
         text-align: center;
         justify-items: center;
         background-color: #202020;
@@ -14,7 +14,7 @@
 
         &__links {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 100px 100px 100px 100px;
             grid-gap: 32px;
             margin-left: 150px;
         }

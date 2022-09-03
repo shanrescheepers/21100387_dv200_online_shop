@@ -131,7 +131,7 @@ export function Homepage() {
                                 </Typography>
                                 {/* PULLS */}
                                 <Typography className='homepage__featureitems__carousel__text__textbody'>
-                                    Shanre Scheepers - Buffalo - The Stare
+                                    Shanre Scheepers - Buffalo
                                     <hr style={{ width: "100px" }} />
                                     R 5000
                                 </Typography>
@@ -184,7 +184,7 @@ export function Homepage() {
                                     </Typography>
                                     {/* PULLS */}
                                     <Typography className='homepage__discounteditems__featureitems__carousel__text__textbody'>
-                                        Shanre Scheepers - Buffalo - The Stare
+                                        Shanre Scheepers - Buffalo
                                         <hr style={{ width: "100px" }} />
                                         R 5000
                                     </Typography>

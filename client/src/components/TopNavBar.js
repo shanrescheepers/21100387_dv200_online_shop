@@ -39,6 +39,9 @@ export function TopNavBar() {
                             <Link href="/theartists" underline="hover" style={{ color: "wheat" }}>
                                 THE ARTISTS
                             </Link>
+                            <Link href="/theartists" underline="hover" style={{ color: "wheat" }}>
+                                CONTACT US
+                            </Link>
                             {/* <Link to="/" className='navbar__toolbar__link'
                                 component="button"
                                 variant="body1"
@@ -46,9 +49,9 @@ export function TopNavBar() {
                             ></Link> */}
                         </div>
                         <div className='navbar__toolbar__icons' >
-                            <AddShoppingCartIcon style={{ paddingRight: "16px" }}></AddShoppingCartIcon>
-                            <InstagramIcon style={{ paddingRight: "16px" }}></InstagramIcon>
-                            <MailIcon style={{ paddingRight: "16px" }}></MailIcon>
+                            <AddShoppingCartIcon style={{ paddingRight: "16px", color: "wheat" }}></AddShoppingCartIcon>
+                            <InstagramIcon style={{ paddingRight: "16px", color: "wheat" }}></InstagramIcon>
+                            <MailIcon style={{ paddingRight: "16px", color: "wheat" }}></MailIcon>
                         </div>
                     </Toolbar>
 
