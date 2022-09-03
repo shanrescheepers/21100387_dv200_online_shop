@@ -1,66 +1,88 @@
 .homepage {
+    display: grid;
+    height: auto;
+    padding-bottom: 8px;
+
     &__backgroundimg {
-        width: auto;
-        height: 20px;
+        display: grid;
 
         &__img {
-            height: 900px;
-            background-size: contain;
+            height: auto;
+            width: 100%;
         }
     }
 
     &__intro {
         display: grid;
         grid-template-columns: 50% 50%;
-        grid-template-rows: 1fr 1fr;
-        padding-top: 32px;
-        height: 300px;
-        grid-gap: 20px;
+
+        &__image {
+            width: auto;
+            display: grid;
+
+            &__rhino {
+                margin-top: 110px;
+                padding-left: 60px;
+                height: 360px;
+            }
+
+
+        }
 
         &__context {
             height: 200px;
-            margin-top: 900px;
             text-align: justify;
-            padding-left: 150px;
+            grid-template-columns: 50% 50%;
+
+
+
+            &__h5 {
+                display: grid;
+                padding-left: 150px;
+                float: left;
+                padding-top: 60px;
+
+
+                &__context {
+                    padding-top: 60px;
+                    margin-top: 80px;
+                    font-family: "intro";
+                    display: grid;
+                }
+            }
         }
 
-        &__artists {
-            height: 200px;
-            margin-top: 900px;
-            text-align: justify;
-            padding-left: 150px;
-            grid-gap: 20px;
+    }
+
+    &__artists {
+        display: grid;
+        grid-auto-rows: auto;
+        width: auto;
+
+        h2 {
+            padding-top: 50px;
+            margin-left: 50px;
+        }
+
+        &__name {
+            padding-top: 20px;
             display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-template-columns: auto auto auto auto;
+            height: 200px;
 
-
-
-            &__tayla {
-                height: 200px;
-                width: 200px;
-                align-self: start;
-
-            }
-
-            &__chrisjan {
-                height: 150px;
-                width: auto;
-                align-self: start;
-
-            }
-
-            &__shanre {
-                height: 200px;
-                width: 200px;
-                padding-left: 20px;
-            }
-
-            &__cathan {
-                height: 200px;
-                width: 200px;
-                padding-left: 60px;
-            }
+            grid-gap: 32px;
+            justify-self: center;
         }
+
+        &__artist {
+            padding-top: 10px;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            height: 200px;
+            grid-gap: 32px;
+            justify-self: center;
+
+        }
+
     }
 }
