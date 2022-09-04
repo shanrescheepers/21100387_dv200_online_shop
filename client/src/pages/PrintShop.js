@@ -13,7 +13,7 @@ import IndividualProductCard from '../components/ProductCards';
 
 
 export function ShopImages() {
-
+        
     const [gatherProductInfo, setGatherProductInfo] = useState();
     const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
     useEffect(() => {

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,6 +12,75 @@ import { IconButton } from '@mui/material';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 // individual product cards
 const IndividualProductCard = (props) => {
+
+    let productId = sessionStorage.getItem("productId");
+    console.log(productId);
+
+    const [product, setProduct] = useState({
+            
+    });
+    const [image, setImage] = useState ();
+    //hier 
+
+    const addCart = () => {
+        
+        console.log("Add Cart");
+        let payloadData = new FormData();
+        console.log(props);
+        let payload = {
+            productId:  props.id,
+            quantity: 1,
+            printMedium: 1,
+            size:1
+        }
+        // console.log("Product", product.id);
+        console.log("Payload", payload);
+        
+        let cartControl =  true;
+        let currentCart = [];
+        let currentStockInSession  = JSON.parse(sessionStorage?.getItem("productCart"));
+        if (currentStockInSession == null) {
+            console.log("Cart is empty");
+            //currentCart = currentStockInSession;
+            currentCart.push(payload)
+        }else{
+            currentCart = currentStockInSession;
+            for (let i = 0; i < currentCart.length; i++) {
+                const el = currentCart[i];
+                console.log("Cart item ", el.quantity);
+                console.log("Payload item ", payload.quantity);
+
+                if (el.productId == payload.productId){
+                    if (el.printMedium == payload.printMedium) {
+                        if (el.size == payload.size) {
+                            console.log("Increment Item");
+
+                            el.quantity = el.quantity + 1
+                            cartControl = false
+                        }
+                    }
+                    
+                }
+                
+            }
+            if (cartControl) {
+                console.log("Add item");
+                currentCart.push(payload)
+            }
+            else{
+                console.log("Update Item");
+            }
+        }
+        
+
+
+        console.log("Current cart length: ", currentCart.length);
+        console.log("currentCart", currentCart);
+
+        // console.log(productCart);
+        sessionStorage.setItem('productCart', JSON.stringify(currentCart));
+        console.log(sessionStorage.getItem("productCart"));
+    }
 
     let navigate = useNavigate();
   const toProduct = () => { 
@@ -36,12 +106,12 @@ const IndividualProductCard = (props) => {
                         R {props.price}.00
                     </Typography>
                     <Typography className='card__featureitems__carousel__text__textbody'>
-                        Shanre Scheepers - Buffalo
+                        {props.artist} - {props.description}
                         <hr style={{ width: "100px" }} />
                     </Typography>
                 </CardContent>
                 <IconButton>
-                    <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                    <ShoppingBasketIcon onClick={ () => addCart()}  style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
                 </IconButton>
                 <Button onClick={ () => toProduct()} variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
                     DESCRIPTION

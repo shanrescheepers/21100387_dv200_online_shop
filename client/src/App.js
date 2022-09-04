@@ -10,6 +10,9 @@ import './fonts/Calligraffitti-Regular.ttf'
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import Artists from './pages/Artists';
+import CartPage from './pages/CartPage';
+
+
 
 
 function App() {
@@ -25,6 +28,7 @@ function App() {
           <Route path="/printshop" element={<ShopImages />} />
           <Route path="/productpage" element={<ProductPage />} />
           <Route path="/theartists" element={<Artists />} />
+          <Route path="/cartpage" element={<CartPage />}/>
         </Routes>
       </BrowserRouter>
       <Footer />
