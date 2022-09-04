@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
+import { useNavigate } from 'react-router-dom';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +11,12 @@ import '../scss/productCards.scss';
 // individual product cards
 const IndividualProductCard = (props) => {
 
+    let navigate = useNavigate();
+  const toProduct = () => { 
+    sessionStorage.setItem('productId', props.id);
+    navigate('/productpage');
+    console.log(props);
+  }
 
     return (
         <div className='card'>
@@ -28,8 +35,8 @@ const IndividualProductCard = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Description</Button>
-                    <Button size="small">Product Information</Button>
+                    <Button size="small">Add to Cart</Button>
+                    <Button size="small" onClick={toProduct}>Product Information</Button>
                 </CardActions>
             </Card>
         </div >

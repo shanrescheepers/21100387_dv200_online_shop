@@ -283,7 +283,7 @@ export function AdminPage() {
             printMedium: 
                 {v0:"Stretched Canvas", v1: "Loose Canvas", v2: "Matte Fine Art Paper"},
             artist: addProduct.artist,
-            size:  {v0:"A1 - ", v1: "200", v2: "300"},
+            size:  {v0:"A1 - 594 x 841 mm", v1: "A2 - 420 x 594 mm", v2: "A3 - 297 x 420 mm"},
             category: addProduct.category,
             stock: addProduct.stock
         }
@@ -313,12 +313,6 @@ export function AdminPage() {
             [event.target.name]: value
         });
 
-        // setStindee({
-        //   ...account,
-        //   profile: {
-        //     ...profile
-        //   }
-        // })
     };
     
 
