@@ -83,7 +83,7 @@ function Row(props) {
                 <TableCell align="right">{row.Quantity}</TableCell>
                 <TableCell align="right">{row.Address}</TableCell>
                 <TableCell>
-                    <IconButton>
+                    <IconButton onClick={() => {alert("Dispatched!")}}>
                         <LocalShippingRoundedIcon></LocalShippingRoundedIcon>
                     </IconButton>
                 </TableCell>
