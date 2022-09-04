@@ -285,11 +285,31 @@ export function Homepage() {
                             </Card>
                         </div>
                         <div>
-                            <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                            <Card >
+                                <CardMedia>
+                                    <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                                </CardMedia>
+                                <CardContent>
+                                    <Typography gutterBottom className='homepage__homepage__discounteditems__featureitems__carousel__text'>
+                                        Rhino Calf
+                                    </Typography>
+                                    {/* PULLS */}
+                                    <Typography className='homepage__discounteditems__featureitems__carousel__text__textbody'>
+                                        Tayla Jane McCurdy - Rhino Calf
+                                        <hr style={{ width: "100px" }} />
+                                        R 34000
+                                    </Typography>
+                                </CardContent>
+                                <IconButton>
+                                    <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                                </IconButton>
+                                <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                                    SHOP PRINTS
+                                </Button>
+                            </Card>
+
                         </div>
-                        <div>
-                            <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
-                        </div>
+
                     </Carousel>
                 </div>
             </div>
