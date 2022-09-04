@@ -1,30 +1,31 @@
 .adminpage {
     display: grid;
-
     grid-template-columns: 50% 50%;
 
 
     &__ingallery {
         display: grid;
-
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 8% 25%;
         grid-auto-rows: auto;
-        padding: 32px;
-        grid-gap: 8px;
-        padding-left: 32px !important;
+        padding: 8px;
         padding-top: 80px !important;
 
 
         &__addbtn {
             margin-top: -70px;
-            float: right;
-            margin-right: -1600px;
             height: 40px;
+            margin-right: -700px;
 
             &__add {
                 font-size: 18px;
                 font-weight: 300;
             }
+
+            &__img {
+                width: 600px;
+            }
+
+
         }
 
     }

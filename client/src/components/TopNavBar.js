@@ -9,7 +9,8 @@ import logo from '../assets/logo.svg'
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
 import '../scss/topNavBar.scss';
-
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -17,6 +18,15 @@ import MailIcon from '@mui/icons-material/Mail';
 
 export function TopNavBar() {
 
+
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: -3,
+            top: 13,
+            border: `2px solid ${theme.palette.background.paper}`,
+            padding: '0 4px',
+        },
+    }));
 
     return (
         <div className='navbar'>
@@ -47,8 +57,10 @@ export function TopNavBar() {
                             ></Link> */}
                         </div>
                         <div className='navbar__toolbar__icons' >
-                            <a key="Email" component="a" href="/cartpage" style={{ paddingRight: "16px", color: "wheat" }} ><AddShoppingCartIcon></AddShoppingCartIcon></a>
+                            <a key="Email" component="a" href="/cartpage" style={{ paddingRight: "16px", color: "wheat" }} ><StyledBadge badgeContent={4} color="success" overlap="circular" fontSize="large" ><AddShoppingCartIcon></AddShoppingCartIcon></StyledBadge></a>
+
                             <a key="Email" component="a" href="https://www.instagram.com/africanamazing/?hl=en" style={{ paddingRight: "16px", color: "wheat" }} ><InstagramIcon style={{ paddingRight: "16px", color: "wheat" }}></InstagramIcon></a>
+
                             <a key="Email" component="a" href="mailto:name@email.com" style={{ paddingRight: "16px", color: "wheat" }} ><MailIcon></MailIcon></a>
                             {/* */}
                         </div>
