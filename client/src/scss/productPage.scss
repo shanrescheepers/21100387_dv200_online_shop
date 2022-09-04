@@ -1,0 +1,17 @@
+.card {
+    display: grid;
+    height: 90vh;
+    grid-gap: 32px;
+
+    &__print {
+        &__prints {
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+    }
+
+    &__prints {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}

@@ -13,7 +13,7 @@ import IndividualProductCard from '../components/ProductCards';
 
 
 export function ShopImages() {
-        
+
     const [gatherProductInfo, setGatherProductInfo] = useState();
     const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
     useEffect(() => {
@@ -23,7 +23,7 @@ export function ShopImages() {
             const photoItem = data.map((photo) =>
 
                 <IndividualProductCard
-                    key={photo._id} 
+                    key={photo._id}
                     id={photo._id}
                     name={photo.name}
                     imgUrl={"http://localhost:5000/wildlifeGalleryImages/" + photo.image} price={photo.price.v1} artist={photo.artist}
@@ -45,10 +45,11 @@ export function ShopImages() {
             </h2>
             <hr style={{ width: "100px", marginTop: "-10px" }}></hr>
             <p className='shop__info__range'>Ranging from leopards to lions to small mammals and some incredible conservation actions shots.</p>
+            <p style={{ fontSize: "12px", paddingBottom: "10px" }} className='shop__info__happy'>With each image, courier costs is covered with the total price of the artwork, why? <br></br> Because your support is all we ask for, your awareness, and your help, and by purchasing an artwork, the extra mile is gone for, and thus, we do the same.</p>
             <p className='shop__info__happy'>Happy browsing!</p>
             <div className='shop__image-container'>
                 {gatherProductInfo}
-             
+
             </div>
         </div>
     );
