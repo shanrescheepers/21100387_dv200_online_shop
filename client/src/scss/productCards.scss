@@ -1,5 +1,6 @@
 .card {
     display: grid;
-    height: 400px !important;
+    height: 100vh !important;
     grid-gap: 32px;
+    overflow: scroll;
 }

@@ -110,7 +110,7 @@ const ProductPage = () => {
     }, []);
 
     return (
-        <div className='card'>
+        <div className='cards'>
             <Card >
                 <CardMedia
                     component="img"
