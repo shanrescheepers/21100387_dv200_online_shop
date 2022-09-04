@@ -14,9 +14,10 @@ const IndividualProductCard = (props) => {
 
     let navigate = useNavigate();
   const toProduct = () => { 
+    console.log(props);
     sessionStorage.setItem('productId', props.id);
     navigate('/productpage');
-    console.log(props);
+    
   }
 
     return (
@@ -42,7 +43,7 @@ const IndividualProductCard = (props) => {
                 <IconButton>
                     <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
                 </IconButton>
-                <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                <Button onClick={ () => toProduct()} variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
                     DESCRIPTION
                 </Button>
             </Card>

@@ -23,7 +23,9 @@ export function ShopImages() {
             const photoItem = data.map((photo) =>
 
                 <IndividualProductCard
-                    key={photo._id} name={photo.name}
+                    key={photo._id} 
+                    id={photo._id}
+                    name={photo.name}
                     imgUrl={"http://localhost:5000/wildlifeGalleryImages/" + photo.image} price={photo.price.v1} artist={photo.artist}
                     description={photo.description}
                 />);
@@ -46,45 +48,7 @@ export function ShopImages() {
             <p className='shop__info__happy'>Happy browsing!</p>
             <div className='shop__image-container'>
                 {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
-                {gatherProductInfo}
+             
             </div>
         </div>
     );
