@@ -38,7 +38,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
-import { ButtonGroup } from '@mui/material';
+import { Alert, ButtonGroup } from '@mui/material';
 import { width } from '@mui/system';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
@@ -392,6 +392,7 @@ const CartPage = () => {
 
     function buyNow() {
         const payloadData = new FormData()
+
         let currentStockInSession  = JSON.parse(sessionStorage?.getItem("productCart"));
         console.log(currentStockInSession);
 
@@ -421,6 +422,9 @@ const CartPage = () => {
         }).finally(() => {
             // setOpen(false)
         });
+      sessionStorage.clear();
+      alert("Order Made!")
+
     }
 
     return (
