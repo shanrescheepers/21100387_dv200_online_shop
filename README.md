@@ -21,7 +21,7 @@
 <p align="center">
 
 <a href="https://github.com/shanrescheepers/21100387_dv200_online_shop">
-<img src="/my-ufcfightsite-app/src/assets/logo.svg" alt="Logo" width="140" height="140">
+<img src="/21100387_dv200_online_shop/client/src/assets/logo.svg" alt="Logo" width="140" height="140">
 </a>
 
 ## Table of Contents
