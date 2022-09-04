@@ -9,7 +9,6 @@
 ![Github code size in bytes](https://img.shields.io/github/languages/code-size/shanrescheepers/21100387_dv200_online_shop)
 ![Github repo stars](https://img.shields.io/github/stars/shanrescheepers/21100387_dv200_online_shop?style=social)
 ![Github forks](https://img.shields.io/github/forks/shanrescheepers/21100387_dv200_online_shop?style=social)
-![Github last commit](https://img.shields.io/github/last-commit/shanrescheepers/21100387_dv200_online_shop?logo=ufc&logoColor=red)
 ![Github top language](https://img.shields.io/github/languages/top/shanrescheepers/21100387_dv200_online_shop)
 
 
