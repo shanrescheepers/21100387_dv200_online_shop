@@ -26,14 +26,6 @@ const OrdersSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    cardNumber: {
-        type: String,
-        required: true
-    },
-    bank: {
-        type: String,
-        required: true
-    },
     products:[
 
     ]

@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const productRoute = require('./routes/product');
 const artistRoute = require('./routes/artist');
 const userRoute = require('./routes/user');
+const ordersRoute = require('./routes/orders');
 require('dotenv/config');
 
 const app = express();
@@ -19,7 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(productRoute);
 app.use(artistRoute);
-app.use(userRoute)
+app.use(userRoute);
+app.use(ordersRoute);
 
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,

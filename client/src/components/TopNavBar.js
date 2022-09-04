@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,7 +17,11 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import MailIcon from '@mui/icons-material/Mail';
 
 export function TopNavBar() {
+    let itemsInCart = JSON.parse(sessionStorage?.getItem("productCart")).length;
+    const [items, setItems] = useState(itemsInCart);
 
+    // setItems(itemsInCart.length)
+    console.log(itemsInCart);
 
     const StyledBadge = styled(Badge)(({ theme }) => ({
         '& .MuiBadge-badge': {
@@ -57,7 +61,7 @@ export function TopNavBar() {
                             ></Link> */}
                         </div>
                         <div className='navbar__toolbar__icons' >
-                            <a key="Email" component="a" href="/cartpage" style={{ paddingRight: "16px", color: "wheat" }} ><StyledBadge badgeContent={4} color="success" overlap="circular" fontSize="large" ><AddShoppingCartIcon></AddShoppingCartIcon></StyledBadge></a>
+                            <a key="Email" component="a" href="/cartpage" style={{ paddingRight: "16px", color: "wheat" }} ><StyledBadge badgeContent={itemsInCart} color="success" overlap="circular" fontSize="large" ><AddShoppingCartIcon></AddShoppingCartIcon></StyledBadge></a>
 
                             <a key="Email" component="a" href="https://www.instagram.com/africanamazing/?hl=en" style={{ paddingRight: "16px", color: "wheat" }} ><InstagramIcon style={{ paddingRight: "16px", color: "wheat" }}></InstagramIcon></a>
 
