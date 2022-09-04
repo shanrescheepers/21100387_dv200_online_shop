@@ -1,8 +1,5 @@
 .card {
     display: grid;
-    place-items: center;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: auto;
-    padding: 16px;
-    grid-gap: 16px;
+    height: auto;
+    grid-gap: 32px;
 }
