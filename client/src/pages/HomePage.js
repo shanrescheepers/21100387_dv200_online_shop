@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import Axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,6 +12,7 @@ import shanre from '../image folder/shanshan.svg'
 import chrisjan from '../image folder/chrischris.svg'
 import cathan from '../image folder/catcat.svg'
 import rhino from '../image folder/rhinobaby.svg'
+import { useEffect, useState } from 'react';
 
 import pangolin from '../image folder/1-1-12.jpg'
 import rangers from '../image folder/IMG_0991.jpg'
@@ -33,6 +34,76 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
 export function Homepage() {
+
+    let productId = sessionStorage.getItem("productId");
+    console.log(productId);
+
+    const [product, setProduct] = useState({
+            
+    });
+    const [image, setImage] = useState ();
+    //hier 
+
+    const addCart = () => {
+        
+        console.log("Add Cart");
+        let payloadData = new FormData();
+        let id = 0;
+        console.log();
+        let payload = {
+            productId: id,
+            quantity: 1,
+            printMedium: 1,
+            size:1
+        }
+        // console.log("Product", product.id);
+        console.log("Payload", payload);
+        
+        let cartControl =  true;
+        let currentCart = [];
+        let currentStockInSession  = JSON.parse(sessionStorage?.getItem("productCart"));
+        if (currentStockInSession == null) {
+            console.log("Cart is empty");
+            //currentCart = currentStockInSession;
+            currentCart.push(payload)
+        }else{
+            currentCart = currentStockInSession;
+            for (let i = 0; i < currentCart.length; i++) {
+                const el = currentCart[i];
+                console.log("Cart item ", el.quantity);
+                console.log("Payload item ", payload.quantity);
+
+                if (el.productId == payload.productId){
+                    if (el.printMedium == payload.printMedium) {
+                        if (el.size == payload.size) {
+                            console.log("Increment Item");
+
+                            el.quantity = el.quantity + 1
+                            cartControl = false
+                        }
+                    }
+                    
+                }
+                
+            }
+            if (cartControl) {
+                console.log("Add item");
+                currentCart.push(payload)
+            }
+            else{
+                console.log("Update Item");
+            }
+        }
+        
+
+
+        console.log("Current cart length: ", currentCart.length);
+        console.log("currentCart", currentCart);
+
+        // console.log(productCart);
+        sessionStorage.setItem('productCart', JSON.stringify(currentCart));
+        console.log(sessionStorage.getItem("productCart"));
+    }
 
     return (
         <div className='homepage'>
@@ -167,7 +238,7 @@ export function Homepage() {
                             <IconButton>
                                 <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
                             </IconButton>
-                            <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                            <Button variant="contained" onClick={() => {addCart()}} href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
                                 SHOP PRINTS
                             </Button>
                         </Card>
