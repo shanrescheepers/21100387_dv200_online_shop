@@ -39,8 +39,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { ButtonGroup } from '@mui/material';
+import { width } from '@mui/system';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
-function createData(id, name, activePrice,price1,price2,price3, artist, quantity, activeSize,size1,size2, size3,activePrintMedium, printMedium1,printMedium2,printMedium3 ) {
+function createData(id, name, activePrice,price1,price2,price3, artist, quantity, activeSize,size1,size2, size3,activePrintMedium, printMedium1,printMedium2,printMedium3, image ) {
     return {
         id,
         name,
@@ -58,6 +60,7 @@ function createData(id, name, activePrice,price1,price2,price3, artist, quantity
         printMedium1,
         printMedium2,
         printMedium3,
+        image
     };
 }
 
@@ -155,18 +158,18 @@ const decreaseProduct = (id, name) => {
             console.log(currentStockInSession.size);
             console.log(row.activeSize);
             if (row.activeSize == "A1 - 594 x 841 mm") {
-                row.activePrice = row.price1
+                row.activePrice = row.price1 * row.quantity
                 element.size = 1
                 setPrice(row.activePrice)
             }
             if (row.activeSize == "A2 - 420 x 594 mm") {
-                row.activePrice = row.price2
+                row.activePrice = row.price2 * row.quantity
                 element.size = 2
                 setPrice(row.activePrice)
 
             }
             if (row.activeSize == "A3 - 297 x 420 mm") {
-                row.activePrice = row.price3
+                row.activePrice = row.price3 * row.quantity
                 element.size = 3
                 setPrice(row.activePrice)
             }
@@ -196,6 +199,7 @@ const decreaseProduct = (id, name) => {
         // table
         <React.Fragment>
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+                <TableCell><img src={row.image} alt={row.name} style = {{width: "100px"}}></img></TableCell>
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
@@ -262,7 +266,7 @@ Row.propTypes = {
         printMedium1: PropTypes.string.isRequired,
         printMedium2: PropTypes.string.isRequired,
         printMedium3: PropTypes.string.isRequired,
-
+        image: PropTypes.string.isRequired,
     }).isRequired,
 };
 
@@ -295,7 +299,7 @@ const CartPage = () => {
         let currentStockInSession  = JSON.parse(sessionStorage?.getItem("productCart"));
         // sessionStorage.clear();
         console.log(currentStockInSession);
-        currentStockInSession.forEach(el => {
+        currentStockInSession?.forEach(el => {
             console.log(el);
 
             Axios.get('http://localhost:5000/product/' + el.productId)
@@ -360,7 +364,7 @@ const CartPage = () => {
             
             activePrice = activePrice * el.quantity
 
-            rows.push(createData(row.id, row.name, activePrice,row.price.v0,row.price.v1,row.price.v2, row.artist,el.quantity, activeSize, row.size.v0,row.size.v1,row.size.v2, activePrintMedium, row.printMedium.v0,row.printMedium.v1,row.printMedium.v2))
+            rows.push(createData(row.id, row.name, activePrice,row.price.v0,row.price.v1,row.price.v2, row.artist,el.quantity, activeSize, row.size.v0,row.size.v1,row.size.v2, activePrintMedium, row.printMedium.v0,row.printMedium.v1,row.printMedium.v2, URL))
             console.log(rows);  
         })
         setGatherRenderedProductInfo(false)
@@ -389,13 +393,13 @@ const CartPage = () => {
     return (
         <div className='cart'>
             <div className='userInfo'>
-                <h1> Input user info</h1>
                 <Box component="form" sx={{
                         '& > :not(style)': { m: 1, width: '25ch' },
                     }}
                     noValidate
                     autoComplete="off"
                     >
+            
              <TextField
                             margin="normal"
                             name="name"
@@ -457,6 +461,39 @@ const CartPage = () => {
                             value={addProduct.country}
                             onChange={handleAddedNewProductChange}
                         />
+            <TextField
+                            margin="normal"
+                            name="cardNumber"
+                            label="cardNumber"
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            value={addProduct.cardNumber}
+                            onChange={handleAddedNewProductChange}
+                        />
+            <TextField
+                            margin="normal"
+                            name="cvv"
+                            label="cvv"
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            value={addProduct.cvv}
+                            onChange={handleAddedNewProductChange}
+                        />
+            <TextField
+                            margin="normal"
+                            name="bank"
+                            label="bank"
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            value={addProduct.bank}
+                            onChange={handleAddedNewProductChange}
+                        />
+            <IconButton aria-label="Buy Now" color="primary" onClick= {() => {}}>
+                    <ShoppingBagIcon /> Buy Now
+                </IconButton>
             </Box>
             </div>
 
@@ -465,6 +502,7 @@ const CartPage = () => {
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
+                                <TableCell></TableCell>
                                 <TableCell>Name</TableCell>
                                 <TableCell align="right">Price</TableCell>
                                 <TableCell align="right">Artist</TableCell>
