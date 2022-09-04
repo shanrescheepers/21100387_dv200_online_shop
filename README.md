@@ -21,7 +21,7 @@
 <p align="center">
 
 <a href="https://github.com/shanrescheepers/21100387_dv200_online_shop">
-<img src="/21100387_dv200_online_shop/client/src/assets/logo.svg" alt="Logo" width="140" height="140">
+<img src="https://github.com/shanrescheepers/21100387_dv200_online_shop/blob/master/client/src/assets/logo.svg" alt="Logo" width="140" height="140">
 </a>
 
 ## Table of Contents
@@ -32,14 +32,6 @@
  * [Getting Started](#getting-started)  
     * [Prerequisites](#prerequisites)
     * [How To Install](#how-to-install)
-* [Features and Functionality](#features-and-functionality)
-* [Development Process](#development-process)
-    * [Implementation Process](#implementation-process)
-        * [Highlites](#highlites)
-        * [Challenges](#challenges)
-    * [Future Implementation](#future-implementation)
-* [Final Outcome](#final-outcome)
-    * [Video Demonstration](#video-demonstration)
 * [Conclusion](#conclusion)
 * [License](#license)
 * [Contact](#contact)
