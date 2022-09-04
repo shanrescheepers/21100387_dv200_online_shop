@@ -110,7 +110,7 @@ const increaseProduct = (id, name) => {
 
         }
 
-}
+    }
         sessionStorage.setItem('productCart', JSON.stringify(currentStockInSession));
         console.log(JSON.parse(sessionStorage?.getItem("productCart")));
 }
@@ -390,6 +390,39 @@ const CartPage = () => {
 
     };
 
+    function buyNow() {
+        const payloadData = new FormData()
+        let currentStockInSession  = JSON.parse(sessionStorage?.getItem("productCart"));
+        console.log(currentStockInSession);
+
+        let payload = {
+            name: addProduct.name,
+            surname: addProduct.surname,
+            email: addProduct.email,
+            postalcode: addProduct.postalcode,
+            street: addProduct.street,
+            country: addProduct.country,
+            products:[
+                currentStockInSession
+             
+            ]
+        }
+
+        payloadData.append("information", JSON.stringify(payload));
+    
+        console.log(JSON.stringify(payloadData));
+
+        Axios.post('http://localhost:5000/orders', payload).then(() => {
+            // setGatherRenderedProductInfo(true)
+
+            // setOpenSnackbar(true)
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            // setOpen(false)
+        });
+    }
+
     return (
         <div className='cart'>
             <div className='userInfo'>
@@ -491,7 +524,7 @@ const CartPage = () => {
                             value={addProduct.bank}
                             onChange={handleAddedNewProductChange}
                         />
-            <IconButton aria-label="Buy Now" color="primary" onClick= {() => {}}>
+            <IconButton aria-label="Buy Now" color="primary" onClick= {() => {buyNow()}}>
                     <ShoppingBagIcon /> Buy Now
                 </IconButton>
             </Box>
