@@ -9,6 +9,8 @@ import AdminPage from './pages/AdminPage';
 import './fonts/Calligraffitti-Regular.ttf'
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
+import Artists from './pages/Artists';
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           {/* {/* <Route path="/printshop" element={<Homepage />} /> */}
           <Route path="/printshop" element={<ShopImages />} />
           <Route path="/productpage" element={<ProductPage />} />
+          <Route path="/theartists" element={<Artists />} />
         </Routes>
       </BrowserRouter>
       <Footer />

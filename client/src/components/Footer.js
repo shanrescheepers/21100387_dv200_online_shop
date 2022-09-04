@@ -27,7 +27,7 @@ export function Footer() {
             </div>
             <div className='footer__socials'>
                 <IconButton style={{ color: "wheat" }}> <InstagramIcon></InstagramIcon></IconButton>
-                <IconButton style={{ color: "wheat" }}> <WhatsAppIcon></WhatsAppIcon></IconButton>
+                <a href="https://wa.me/27827559178"><IconButton style={{ color: "wheat" }}> <WhatsAppIcon></WhatsAppIcon></IconButton></a>
                 <IconButton style={{ color: "wheat" }}> <EmailIcon></EmailIcon></IconButton>
             </div>
         </div>

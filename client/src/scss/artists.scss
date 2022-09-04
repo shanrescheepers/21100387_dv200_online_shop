@@ -1,0 +1,15 @@
+.artist {
+    padding-left: 80px;
+    display: grid;
+    padding-top: 32px;
+    grid-template-columns: 25% 25% 25% 25%;
+    height: 50vh;
+    grid-gap: 32px;
+    width: auto;
+
+    &__img {
+        width: auto;
+        display: grid;
+
+    }
+}

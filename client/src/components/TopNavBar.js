@@ -39,9 +39,7 @@ export function TopNavBar() {
                             <Link href="/theartists" underline="hover" style={{ color: "wheat" }}>
                                 THE ARTISTS
                             </Link>
-                            <Link href="/theartists" underline="hover" style={{ color: "wheat" }}>
-                                CONTACT US
-                            </Link>
+
                             {/* <Link to="/" className='navbar__toolbar__link'
                                 component="button"
                                 variant="body1"
