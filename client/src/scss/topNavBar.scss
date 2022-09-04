@@ -1,5 +1,6 @@
 .navbar {
     display: grid;
+    position: sticky !important;
 
     &__toolbar {
         grid-row: auto;
@@ -11,6 +12,7 @@
         background-color: #202020;
         height: 140px;
         width: auto;
+        position: sticky !important;
 
         &__links {
             display: grid;

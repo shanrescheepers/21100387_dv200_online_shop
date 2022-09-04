@@ -39,13 +39,13 @@ export function Homepage() {
     console.log(productId);
 
     const [product, setProduct] = useState({
-            
+
     });
-    const [image, setImage] = useState ();
+    const [image, setImage] = useState();
     //hier 
 
     const addCart = () => {
-        
+
         console.log("Add Cart");
         let payloadData = new FormData();
         let id = "6314beab112386b16a0462f6";
@@ -54,26 +54,26 @@ export function Homepage() {
             productId: id,
             quantity: 1,
             printMedium: 1,
-            size:1
+            size: 1
         }
         // console.log("Product", product.id);
         console.log("Payload", payload);
-        
-        let cartControl =  true;
+
+        let cartControl = true;
         let currentCart = [];
-        let currentStockInSession  = JSON.parse(sessionStorage?.getItem("productCart"));
+        let currentStockInSession = JSON.parse(sessionStorage?.getItem("productCart"));
         if (currentStockInSession == null) {
             console.log("Cart is empty");
             //currentCart = currentStockInSession;
             currentCart.push(payload)
-        }else{
+        } else {
             currentCart = currentStockInSession;
             for (let i = 0; i < currentCart.length; i++) {
                 const el = currentCart[i];
                 console.log("Cart item ", el.quantity);
                 console.log("Payload item ", payload.quantity);
 
-                if (el.productId == payload.productId){
+                if (el.productId == payload.productId) {
                     if (el.printMedium == payload.printMedium) {
                         if (el.size == payload.size) {
                             console.log("Increment Item");
@@ -82,19 +82,19 @@ export function Homepage() {
                             cartControl = false
                         }
                     }
-                    
+
                 }
-                
+
             }
             if (cartControl) {
                 console.log("Add item");
                 currentCart.push(payload)
             }
-            else{
+            else {
                 console.log("Update Item");
             }
         }
-        
+
 
 
         console.log("Current cart length: ", currentCart.length);
@@ -236,9 +236,9 @@ export function Homepage() {
                                 </Typography>
                             </CardContent>
                             <IconButton>
-                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }} onClick={() => { addCart() }}></ShoppingBasketIcon>
                             </IconButton>
-                            <Button variant="contained" onClick={() => {addCart()}} href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                            <Button variant="contained" onClick={() => { addCart() }} href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
                                 SHOP PRINTS
                             </Button>
                         </Card>

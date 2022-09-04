@@ -5,8 +5,8 @@
 
     &__ingallery {
         display: grid;
-        grid-template-columns: 8% 25%;
-        grid-auto-rows: 300px 300px;
+        grid-template-columns: 3% 5%;
+        grid-auto-rows: 100px 100px;
         padding: 8px;
         padding-top: 80px !important;
 
@@ -36,9 +36,8 @@
 
     &__orders {
         display: grid;
+        padding-left: 200px;
 
-        padding: 32px;
-        grid-gap: 8px;
         padding-top: 100px !important;
         height: 750px;
         overflow: scroll;
