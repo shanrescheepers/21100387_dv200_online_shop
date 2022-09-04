@@ -155,13 +155,13 @@ export function Homepage() {
                             </CardMedia>
                             <CardContent>
                                 <Typography gutterBottom className='homepage__featureitems__carousel__text'>
-                                    Pangolin
+                                    Unlawful Target
                                 </Typography>
                                 {/* PULLS */}
                                 <Typography className='homepage__featureitems__carousel__text__textbody'>
                                     Shanre Scheepers - Pangolin
                                     <hr style={{ width: "100px" }} />
-                                    R 46000
+                                    R 23889.00
                                 </Typography>
                             </CardContent>
                             <IconButton>
