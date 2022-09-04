@@ -34,28 +34,26 @@ import Stack from '@mui/material/Stack';
 import { useEffect, useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import axios from 'axios';
-import { ButtonGroup } from '@mui/material';
 
 
 // TABLE
-function createData(name, calories, fat, carbs, protein, price) {
+function createData(name, TotalPrice, Quantity) {
     return {
         name,
-        calories,
-        fat,
-        carbs,
-        protein,
-        price,
+        TotalPrice,
+        Quantity,
         history: [
             {
-                date: '2020-01-05',
-                customerId: '11091700',
-                amount: 3,
+                date: '2022-09-00',
+                Item: 'The Lion Lick',
+                amount: 6,
+                price: 3000
             },
             {
-                date: '2020-01-02',
-                customerId: 'Anonymous',
-                amount: 1,
+                date: '2022-09-00',
+                Item: 'Nyeleti',
+                amount: 7,
+                price: 3000
             },
         ],
     };
@@ -81,10 +79,9 @@ function Row(props) {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.TotalPrice}</TableCell>
+                <TableCell align="right">{row.Quantity}</TableCell>
+                <TableCell align="right">{row.Address}</TableCell>
                 <TableCell>
                     <IconButton>
                         <LocalShippingRoundedIcon></LocalShippingRoundedIcon>
@@ -101,23 +98,25 @@ function Row(props) {
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Date</TableCell>
-                                        <TableCell>Customer</TableCell>
-                                        <TableCell align="right">Amount</TableCell>
+                                        <TableCell>Item Name</TableCell>
+                                        <TableCell>Price</TableCell>
+                                        <TableCell align="right">Item quantity</TableCell>
                                         <TableCell align="right">Total price ($)</TableCell>
+                                        <TableCell align="right">Date</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {row.history.map((historyRow) => (
                                         <TableRow key={historyRow.date}>
                                             <TableCell component="th" scope="row">
-                                                {historyRow.date}
+                                                {historyRow.Item}
                                             </TableCell>
-                                            <TableCell>{historyRow.customerId}</TableCell>
+                                            <TableCell>{historyRow.price}</TableCell>
                                             <TableCell align="right">{historyRow.amount}</TableCell>
                                             <TableCell align="right">
-                                                {Math.round(historyRow.amount * row.price * 100) / 100}
+                                                {Math.round(historyRow.price * historyRow.amount) }
                                             </TableCell>
+                                            <TableCell align="right">{historyRow.date}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -132,28 +131,25 @@ function Row(props) {
 // TABLE
 Row.propTypes = {
     row: PropTypes.shape({
-        calories: PropTypes.number.isRequired,
-        carbs: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
+        name: PropTypes.number.isRequired,
+        TotalPrice: PropTypes.number.isRequired,
+        Quantity: PropTypes.number.isRequired,
+        Address: PropTypes.string.isRequired,
         history: PropTypes.arrayOf(
             PropTypes.shape({
                 amount: PropTypes.number.isRequired,
-                customerId: PropTypes.string.isRequired,
+                price: PropTypes.number.isRequired,
+                totalPrice: PropTypes.number.isRequired,
+                Item: PropTypes.string.isRequired,
                 date: PropTypes.string.isRequired,
             }),
         ).isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        protein: PropTypes.number.isRequired,
     }).isRequired,
 };
 // TABLE
 const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+    createData('Shanre', 39000, 6, 'The way home'),
+
 ];
 
 // GALLERY STOCK COMPONENT
@@ -172,8 +168,8 @@ export function AdminPage() {
 
     const [products, setProducts] = useState([]);
     const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
-
-
+    
+    
     const deleteProduct = (id, name) => {
         console.log("Delete Product ", id);
         if (window.confirm("Are you sure you want to delete: " + name) === true) {
@@ -191,33 +187,32 @@ export function AdminPage() {
 
             let data = res.data;
             console.log(data);
-            const photoItem = data.map((item) =>
+            const photoItem = data.map((item) => 
                 <ImageListItem key={item._id} cols={1} rows={1}>
 
-                    {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" + item.image)}
+                    {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" +item.image)}
                     <img
-                        {...srcset("http://localhost:5000/wildlifeGalleryImages/" + item.image, 300, 100, 1, 1)}
+                        {...srcset("http://localhost:5000/wildlifeGalleryImages/" +item.image, 300, 100,  1,  1)}
                         alt={item.name}
                         loading="lazy"
-                        style={{ borderRadius: "2px" }} />
-                    <ImageListItemBar style={{ borderRadius: "2px", fontSize: "10px" }}
+                        style={{ borderRadius: "8px" }} />
+                    <ImageListItemBar style={{ borderRadius: "8px" }}
                         sx={{
                             background:
                                 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
                                 'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
                         }}
-
                         title={item.name}
                         position="top"
                         actionIcon={
-                            // Hoekom werk dit?! Daai onClick met => function
-                            <Button onClick={() => { deleteProduct(item._id, item.name) }} color="warning" size="extralarge" startIcon={<DeleteIcon />} >
-
+                            // Hoekom werk dit?!?!?!?!? Daai onClick met => function
+                            <Button variant="outlined" onClick={()=>{deleteProduct(item._id, item.name)}} startIcon={<DeleteIcon />}>
+                                Delete
                             </Button>
                         }
-                        actionPosition="left"
-                    />
-                </ImageListItem>
+                    actionPosition="left"
+                />
+            </ImageListItem>
             );
             console.log(photoItem);
             setProducts(photoItem)
@@ -273,19 +268,19 @@ export function AdminPage() {
         // console.log(myDate);
 
         let price1 = addProduct.price
-        let price2 = Math.round(addProduct.price / 1.8)
-        let price3 = Math.round(price2 - 170)
+        let price2 = Math.round(addProduct.price/1.8)
+        let price3 = Math.round(price2-170)
 
         let payload = {
             date: myDate,
             name: addProduct.name,
             description: addProduct.description,
-            price: { v0: price1, v1: price2, v2: price3 },
+            price:  {v0:price1, v1: price2, v2: price3},
             discount: addProduct.discount,
-            printMedium:
-                { v0: "Stretched Canvas", v1: "Loose Canvas", v2: "Matte Fine Art Paper" },
+            printMedium: 
+                {v0:"Stretched Canvas", v1: "Loose Canvas", v2: "Matte Fine Art Paper"},
             artist: addProduct.artist,
-            size: { v0: "A1 - 594 x 841 mm", v1: "A2 - 420 x 594 mm", v2: "A3 - 297 x 420 mm" },
+            size:  {v0:"A1 - 594 x 841 mm", v1: "A2 - 420 x 594 mm", v2: "A3 - 297 x 420 mm"},
             category: addProduct.category,
             stock: addProduct.stock
         }
@@ -293,7 +288,7 @@ export function AdminPage() {
         payloadData.append("information", JSON.stringify(payload));
 
         payloadData.append("image", newProductImage);
-
+    
         // console.log(JSON.stringify(payloadData);
 
         Axios.post('http://localhost:5000/product', payloadData).then(() => {
@@ -316,7 +311,7 @@ export function AdminPage() {
         });
 
     };
-
+    
 
     return (
         <div className='adminpage'>
@@ -440,14 +435,18 @@ export function AdminPage() {
                     onClose={() => setOpenSnackbar(false)}
                     message="Product Added!"
                 />
-                <div className='adminpage__ingallery__addbtn__img'>
-                    <ImageList className='adminpage__ingallery__img'
-                        rowHeight={200}
-                        gap={8}>
-                        {products}
-                    </ImageList>
-                </div>
+                <ImageList
+                    sx={{
+                        width: 900,
+                        height: 750,
+                        // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
+                        transform: 'translateZ(0)',
+                    }}
+                    rowHeight={200}
+                    gap={8}>
 
+                    {products}
+                </ImageList>
             </div>
 
 
@@ -458,11 +457,10 @@ export function AdminPage() {
                         <TableHead>
                             <TableRow>
                                 <TableCell />
-                                <TableCell>Dessert (100g serving)</TableCell>
-                                <TableCell align="right">Calories</TableCell>
-                                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                                <TableCell>Name</TableCell>
+                                <TableCell align="right">TotalPrice</TableCell>
+                                <TableCell align="right">Quantity</TableCell>
+                                <TableCell align="right">Address</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
