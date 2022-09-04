@@ -1,0 +1,45 @@
+.shop {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: auto;
+    height: 200px;
+    grid-gap: 32px;
+    justify-self: center;
+    height: auto;
+    grid-gap: 32px;
+
+    &__info,
+    h2 {
+        display: grid;
+        grid-template-rows: 1px 1px 1px;
+        align-items: center;
+        font-size: 32px;
+
+        &__range {
+            margin-top: -10px;
+            display: grid;
+            align-items: center;
+            font-family: "intro";
+            font-size: 21px;
+        }
+
+        &__happy {
+            display: grid;
+            margin-top: -40px;
+            align-items: center;
+            font-family: "intro";
+            font-size: 19px;
+        }
+    }
+
+    &__image-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        height: auto;
+        grid-gap: 8px;
+        justify-self: center;
+        grid-gap: 32px;
+    }
+
+
+}

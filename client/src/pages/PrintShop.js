@@ -7,7 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import '../scss/shopPage.scss';
+import '../scss/printShop.scss';
 import IndividualProductCard from '../components/ProductCards';
 
 
@@ -20,13 +20,13 @@ export function ShopImages() {
         Axios.get('http://localhost:5000/products').then(res => {
             let data = res.data;
             console.log(data);
-            const photoItem = data.map((photo) => 
-            
-            <IndividualProductCard
-                key={photo._id} name={photo.name}
-                imgUrl={"http://localhost:5000/wildlifeGalleryImages/" +photo.image} price={photo.price.v1} artist={photo.artist}
-                description={photo.description} id={photo._id}
-            />);
+            const photoItem = data.map((photo) =>
+
+                <IndividualProductCard
+                    key={photo._id} name={photo.name}
+                    imgUrl={"http://localhost:5000/wildlifeGalleryImages/" + photo.image} price={photo.price.v1} artist={photo.artist}
+                    description={photo.description}
+                />);
 
             setGatherProductInfo(photoItem)
             // om 'n infinite loop te stop
@@ -38,10 +38,52 @@ export function ShopImages() {
 
     return (
         <div className='shop'>
-            <Typography variant="h5" component="div" className='shop__info'>
+            <h2 className='shop__info'>
                 PRINT RANGE
-            </Typography>
+            </h2>
+            <hr style={{ width: "100px", marginTop: "-10px" }}></hr>
+            <p className='shop__info__range'>Ranging from leopards to lions to small mammals and some incredible conservation actions shots.</p>
+            <p className='shop__info__happy'>Happy browsing!</p>
             <div className='shop__image-container'>
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
+                {gatherProductInfo}
                 {gatherProductInfo}
             </div>
         </div>
