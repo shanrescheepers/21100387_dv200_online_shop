@@ -17,7 +17,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import MailIcon from '@mui/icons-material/Mail';
 
 export function TopNavBar() {
-    let itemsInCart = JSON.parse(sessionStorage?.getItem("productCart")).length;
+    let itemsInCart = JSON.parse(sessionStorage?.getItem("productCart"))?.length;
     const [items, setItems] = useState(itemsInCart);
 
     // setItems(itemsInCart.length)
