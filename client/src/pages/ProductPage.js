@@ -36,40 +36,55 @@ const ProductPage = () => {
         // console.log("Product", product.id);
         console.log("Payload", payload);
         
-        let inCart = false;
-        let currentCart = JSON.parse(sessionStorage?.getItem("productCart"))
-
-        console.log("currentCart", currentCart);
-        if (currentCart) {
-            console.log("Cart level1");
-            console.log(currentCart.length);
+        let cartControl =  true;
+        let currentCart = [];
+        let currentStockInSession  = JSON.parse(sessionStorage?.getItem("productCart"));
+        if (currentStockInSession == null) {
+            console.log("Cart is empty");
+            //currentCart = currentStockInSession;
+            currentCart.push(payload)
+        }else{
+            currentCart = currentStockInSession;
             for (let i = 0; i < currentCart.length; i++) {
-                console.log("Cart Running");
-                if (currentCart[i].productId == payload.productId) {
-                    console.log("Same Id");
-                    if (currentCart[i].printMedium == payload.printMedium) {
-                        if (currentCart[i].size == payload.size) {
-                            inCart = true;
-                            currentCart[i].quantity = currentCart[i].quantity + 1;
+                const el = currentCart[i];
+                console.log("Cart item ", el.quantity);
+                console.log("Payload item ", payload.quantity);
+
+                if (el.productId == payload.productId){
+                    if (el.printMedium == payload.printMedium) {
+                        if (el.size == payload.size) {
+                            console.log("Increment Item");
+
+                            el.quantity = el.quantity + 1
+                            cartControl = false
                         }
                     }
+                    
                 }
-            } 
-        } else{
-            productCart.push(currentCart)
+                
+            }
+            if (cartControl) {
+                console.log("Add item");
+                currentCart.push(payload)
+            }
+            else{
+                console.log("Update Item");
+            }
         }
         
 
-        if (!inCart) {
-            productCart.push(currentCart)
-        }
-        
-        console.log(productCart);
-        sessionStorage.setItem('productCart', JSON.stringify(payload));
+
+        console.log("Current cart length: ", currentCart.length);
+        console.log("currentCart", currentCart);
+
+        // console.log(productCart);
+        sessionStorage.setItem('productCart', JSON.stringify(currentCart));
         console.log(sessionStorage.getItem("productCart"));
     }
 
     useEffect(()=>{
+        // sessionStorage.clear();
+        console.log("Useeffect load session: ",  sessionStorage.getItem("productCart"));
         Axios.get('http://localhost:5000/product/' + productId)
         .then(res => {
             let data = res.data;
