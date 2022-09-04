@@ -12,6 +12,11 @@ import shanre from '../image folder/shanshan.svg'
 import chrisjan from '../image folder/chrischris.svg'
 import cathan from '../image folder/catcat.svg'
 import rhino from '../image folder/rhinobaby.svg'
+
+import pangolin from '../image folder/1-1-12.jpg'
+import rangers from '../image folder/IMG_0991.jpg'
+import rangers1 from '../image folder/IMG_3199.JPG'
+
 import buffalo from '../image folder/buffalo.svg'
 import '../fonts/Calligraffitti-Regular.ttf'
 import '../scss/homePage.scss';
@@ -115,12 +120,8 @@ export function Homepage() {
             <div className='homepage__featureitems'>
 
                 <h2 className='artworks' >LATEST ARTWORKS <hr ></hr></h2>
-
-
-
                 <Carousel className='homepage__featureitems__carousel'>
                     <div>
-
                         <Card >
                             <CardMedia>
                                 <img src={buffalo} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
@@ -148,13 +149,76 @@ export function Homepage() {
 
 
                     <div>
-                        <img src={chrisjan} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                        <Card >
+                            <CardMedia>
+                                <img src={pangolin} className="homepage__intro__image" style={{ height: "160px", margin: "none", width: "100px" }} />
+                            </CardMedia>
+                            <CardContent>
+                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
+                                    Pangolin
+                                </Typography>
+                                {/* PULLS */}
+                                <Typography className='homepage__featureitems__carousel__text__textbody'>
+                                    Shanre Scheepers - Pangolin
+                                    <hr style={{ width: "100px" }} />
+                                    R 46000
+                                </Typography>
+                            </CardContent>
+                            <IconButton>
+                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                            </IconButton>
+                            <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                                SHOP PRINTS
+                            </Button>
+                        </Card>
                     </div>
                     <div>
-                        <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                        <Card >
+                            <CardMedia>
+                                <img src={rangers} className="homepage__intro__image" style={{ height: "160px", margin: "none", width: "130px" }} />
+                            </CardMedia>
+                            <CardContent>
+                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
+                                    Rangers
+                                </Typography>
+                                {/* PULLS */}
+                                <Typography className='homepage__featureitems__carousel__text__textbody'>
+                                    Chrisjan Visser - Rangers
+                                    <hr style={{ width: "100px" }} />
+                                    R 45000
+                                </Typography>
+                            </CardContent>
+                            <IconButton>
+                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                            </IconButton>
+                            <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                                SHOP PRINTS
+                            </Button>
+                        </Card>
                     </div>
                     <div>
-                        <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                        <Card >
+                            <CardMedia>
+                                <img src={rangers1} className="homepage__intro__image" style={{ height: "160px", margin: "none", width: "300px" }} />
+                            </CardMedia>
+                            <CardContent>
+                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
+                                    Rangers In Action
+                                </Typography>
+                                {/* PULLS */}
+                                <Typography className='homepage__featureitems__carousel__text__textbody'>
+                                    Chrisjan Visser - Rangers
+                                    <hr style={{ width: "100px" }} />
+                                    R 55000
+                                </Typography>
+                            </CardContent>
+                            <IconButton>
+                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                            </IconButton>
+                            <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                                SHOP PRINTS
+                            </Button>
+                        </Card>
                     </div>
 
 
@@ -168,12 +232,8 @@ export function Homepage() {
                 <div className='homepage__discounteditems__featureitems'>
 
                     <h2 className='discount' style={{ textAlign: "center", paddingBottom: "15px" }} >DISCOUNTS<hr className='discounthr' ></hr></h2>
-
-
-
                     <Carousel className='homepage__discounteditems__featureitems__carousel'>
                         <div>
-
                             <Card >
                                 <CardMedia>
                                     <img src={buffalo} className="homepage__discounteditems__intro__image" style={{ height: "160px", margin: "none" }} />
@@ -201,7 +261,28 @@ export function Homepage() {
 
 
                         <div>
-                            <img src={chrisjan} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
+                            <Card >
+                                <CardMedia>
+                                    <img src={buffalo} className="homepage__discounteditems__intro__image" style={{ height: "160px", margin: "none" }} />
+                                </CardMedia>
+                                <CardContent>
+                                    <Typography gutterBottom className='homepage__homepage__discounteditems__featureitems__carousel__text'>
+                                        Buffalo Cow
+                                    </Typography>
+                                    {/* PULLS */}
+                                    <Typography className='homepage__discounteditems__featureitems__carousel__text__textbody'>
+                                        Shanre Scheepers - Buffalo
+                                        <hr style={{ width: "100px" }} />
+                                        R 5000
+                                    </Typography>
+                                </CardContent>
+                                <IconButton>
+                                    <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
+                                </IconButton>
+                                <Button variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                                    SHOP PRINTS
+                                </Button>
+                            </Card>
                         </div>
                         <div>
                             <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />

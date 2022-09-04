@@ -134,15 +134,15 @@ const ProductPage = () => {
                 <Typography className='card__prints'>
                     <div className='prints__printsize'>
                         <h4>PRINT SIZES</h4>
-                        <p>SIZE {product.size.v0} = R {product.price.v0}.00</p>
-                        <p >SIZE {product.size.v1} = R {product.price.v1}.00</p>
-                        <p>SIZE {product.size.v2} = R {product.price.v2}.00</p>
+                        <p>SIZE {product?.size?.v0} = R {product?.price?.v0}.00</p>
+                        <p >SIZE {product?.size?.v1} = R {product?.price?.v1}.00</p>
+                        <p>SIZE {product?.size?.v2} = R {product?.price?.v2}.00</p>
                     </div>
                     <div className='prints__printmediums'>
                         <h4 > PRINT MEDIUMS</h4>
-                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product.printMedium.v0}</p>
-                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product.printMedium.v1}</p>
-                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product.printMedium.v2}</p>
+                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v0}</p>
+                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v1}</p>
+                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v2}</p>
                     </div>
                 </Typography>
             </div>
