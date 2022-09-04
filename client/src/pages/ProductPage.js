@@ -20,7 +20,7 @@ const ProductPage = () => {
             
     });
     const [image, setImage] = useState ();
-    //hier 
+
 
     const addCart = () => {
         
@@ -84,7 +84,7 @@ const ProductPage = () => {
 
     useEffect(()=>{
         // sessionStorage.clear();
-        console.log("Useeffect load session: ",  sessionStorage.getItem("productCart"));
+        console.log("Use effect load session: ",  sessionStorage.getItem("productCart"));
         Axios.get('http://localhost:5000/product/' + productId)
         .then(res => {
             let data = res.data;
