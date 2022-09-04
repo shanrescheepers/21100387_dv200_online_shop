@@ -6,9 +6,10 @@
     &__ingallery {
         display: grid;
         grid-template-columns: 8% 25%;
-        grid-auto-rows: auto;
+        grid-auto-rows: 300px 300px;
         padding: 8px;
         padding-top: 80px !important;
+
 
 
         &__addbtn {
@@ -24,6 +25,8 @@
 
             &__img {
                 width: 600px;
+                overflow: scroll;
+                height: 900px;
             }
 
 
