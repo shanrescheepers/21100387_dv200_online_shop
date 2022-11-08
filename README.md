@@ -8,7 +8,7 @@
 ![Github language count](https://img.shields.io/github/languages/count/shanrescheepers/21100387_dv200_online_shop)
 ![Github code size in bytes](https://img.shields.io/github/languages/code-size/shanrescheepers/21100387_dv200_online_shop)
 ![Github repo stars](https://img.shields.io/github/stars/shanrescheepers/21100387_dv200_online_shop?style=social)
-![Github forks](https://img.shields.io/github/forks/shanrescheepers/21100387_dv200_online_shop?style=social)
+![Github forks](https://img.shields.io/github/forks/shanrescheepers/21100387_dv200_online_shop?style=social)aawg1.png
 ![Github top language](https://img.shields.io/github/languages/top/shanrescheepers/21100387_dv200_online_shop)
 
 
@@ -21,6 +21,7 @@
 
 <a href="https://github.com/shanrescheepers/21100387_dv200_online_shop">
 <img src="https://github.com/shanrescheepers/21100387_dv200_online_shop/blob/master/client/src/assets/logo.svg" alt="Logo" width="140" height="140">
+
 </a>
 
 ## Table of Contents
