@@ -1,18 +1,91 @@
 .homepage {
     display: grid;
-    height: auto;
+    height: fit-content;
+
+    &__newfeatureditems {
+        padding-left: 32px;
+        justify-self: center;
+        padding-top: 32px;
+        display: grid;
+        grid-template-columns: 200px 100px 200px;
+        align-items: center;
+        text-align: center;
+        justify-items: center;
+        grid-gap: 32px;
+
+        &__newdiscounts {
+            display: grid;
+            height: 350px;
+            text-align: center;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+
+            &__h2 {
+                font-size: 25px;
+                margin-left: -100px;
+            }
+
+            &__carousel,
+            .carousel {
+                grid-gap: 32px;
+                margin-right: 100px;
+                width: 500px !important;
+                height: 380px !important;
+            }
+        }
+
+        &__vl {
+            border-left: 1px solid rgb(0, 0, 0);
+            height: 200px;
+            margin-top: 30px;
+
+
+        }
+
+        &__newlatest {
+            display: grid;
+            height: 350px;
+            text-align: center;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr;
+
+
+            &__h2 {
+                font-size: 25px;
+                margin-left: -100px;
+            }
+
+            &__carousel .carousel {
+                grid-gap: 32px;
+                margin-right: 100px;
+                width: 500px !important;
+                height: 400px !important;
+            }
+        }
+
+    }
+
+
 
     &__backgroundimg {
         display: grid;
+        background-image: url('../image folder/conservation.jpeg');
+        background-repeat: no-repeat;
+        background-size: contain;
 
         &__img {
-            height: auto;
+            height: 500px;
             width: 100%;
         }
     }
 
     &__intro {
         display: grid;
+        padding-top: 400px;
         grid-template-columns: 50% 50%;
 
         &__image {
@@ -20,16 +93,17 @@
             display: grid;
 
             &__rhino {
-                margin-top: 110px;
+                margin-top: 20px;
                 padding-left: 60px;
-                height: 360px;
+                height: 400px;
+                width: 600px;
             }
 
 
         }
 
         &__context {
-            height: 200px;
+            height: 100px;
             text-align: justify;
             grid-template-columns: 50% 50%;
 
@@ -37,14 +111,15 @@
 
             &__h5 {
                 display: grid;
-                padding-left: 150px;
+                padding-left: 120px;
                 float: left;
-                padding-top: 60px;
+                padding-top: 20px;
+
 
 
                 &__context {
-                    padding-top: 60px;
-                    margin-top: 80px;
+
+                    padding-left: 20px;
                     font-family: "intro";
                     display: grid;
                 }
@@ -57,14 +132,18 @@
         display: grid;
         grid-auto-rows: auto;
         width: auto;
+        background-color: #2D2F33;
+        height: 350px;
+        margin-top: 60px;
 
         h2 {
-            padding-top: 50px;
+
+            color: white;
 
         }
 
         &__name {
-            padding-top: 20px;
+
             display: grid;
             grid-template-columns: auto auto auto auto;
             height: 200px;
@@ -73,7 +152,7 @@
         }
 
         &__artist {
-            padding-top: 10px;
+            margin-top: -100px;
             display: grid;
             grid-template-columns: auto auto auto auto;
             height: 200px;
@@ -84,121 +163,129 @@
     }
 
     &__featureitems {
-        display: grid;
-        height: 300px;
-        grid-auto-rows: auto;
-        width: auto;
-        // hier is waar jy waas
-        grid-template-columns: 33% 33% 33%;
-        justify-content: center;
-        padding-top: 40px;
 
-        .artworks,
-        h2 {
-            margin-top: 40px;
-            margin-left: 610px;
-            width: 200px;
 
-            &__hr {
-                border: 3px solid black;
-                height: 2px;
-            }
+        // &__cart {
+        //     width: auto;
+        //     height: 100px;
+        // }
+
+        // .artworks,
+        // h2 {
+        //     display: grid;
+        //     grid-template-rows: 80px 80px;
+        //     grid-template-columns: 1fr;
+
+
+
+
+        &__hr {
+            border: 3px solid black;
+            height: 2px;
         }
 
 
-        &__carousel {
-            width: auto;
-            display: grid;
-            padding-bottom: 50px;
 
-            &__text {
-                font-size: 12px;
+        // &__carousel {
+        //     padding-top: 50px;
+        //     width: 401px !important;
+        //     height: 443px !important;
+        //     display: grid;
+        //     padding-bottom: 50px;
 
-                &__textbody {
-                    font-size: 10px;
-                }
-            }
+        // &__text {
+        //     font-size: 12px;
 
-
-
-            g button {
-                background-color: black;
-
-            }
-
-            .carousel.carousel-slider .control-arrow {
-                top: 0;
-                color: black !important;
-                font-size: 26px;
-                bottom: 0;
-                margin-top: 0;
-                padding: 5px;
-            }
-
-            .carousel.carousel-slider .control-arrow:hover {
-                background: rgba(0, 0, 0, 0.2);
-                background-color: transparent !important;
-            }
-
-            .carousel.carousel-slider {
-                margin: 0;
-                margin-top: 150px !important;
-                overflow: hidden;
-                height: 400px !important;
-                width: auto !important;
-                align-items: center !important;
-                display: grid !important;
-                justify-content: center;
-                padding-bottom: 20px;
-            }
-
-            .carousel .control-next.control-arrow:before {
-                border-left: 8px solid #181818 !important;
-
-            }
-
-            .carousel .thumb.selected,
-            .carousel .thumb:hover {
-                border: none !important;
-                background-color: transparent !important;
-            }
-
-            .carousel .thumb:focus {
-                border: none !important;
-                outline: none !important;
-            }
-
-            .carousel .control-prev.control-arrow:before {
-                border-right: 8px solid #181818 !important;
-
-            }
+        //     &__textbody {
+        //         font-size: 10px;
+        //     }
+        // }
 
 
-            .carousel .thumb {
 
-                display: inline-block;
-                margin-right: 6px;
-                white-space: nowrap;
-                overflow: hidden;
-                border: 3px solid #fff;
-                padding: 2px;
-            }
+        g button {
+            background-color: black;
 
-            .carousel .carousel-status {
-
-                top: 0;
-                right: 0;
-                padding: 5px;
-                font-size: 10px;
-                text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.9) !important;
-                color: transparent !important;
-            }
-
-            .carousel {
-                display: none;
-            }
         }
+
+        .carousel.carousel-slider .control-arrow {
+            top: 0;
+            color: black !important;
+            font-size: 20px;
+            bottom: 0;
+            margin-top: 0;
+
+        }
+
+        .carousel.carousel-slider .control-arrow:hover {
+            background: rgba(0, 0, 0, 0.2);
+            background-color: transparent !important;
+        }
+
+        .carousel.carousel-slider {
+            margin: 0;
+            margin-top: 10px !important;
+            overflow: hidden;
+            height: 330px !important;
+            width: auto !important;
+            align-items: center !important;
+            display: grid !important;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+
+        .carousel .thumb.selected,
+        .carousel .thumb:hover {
+            border: none !important;
+            background-color: transparent !important;
+        }
+
+        .carousel .thumb:focus {
+            border: none !important;
+            outline: none !important;
+        }
+
+        .carousel .control-prev.control-arrow:before {
+            border-right: 8px solid #181818 !important;
+
+        }
+
+
+        .carousel .thumb {
+
+            display: inline-block;
+            margin-right: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            border: 3px solid #fff;
+            padding: 2px;
+        }
+
+        .MuiSvgIcon-root .MuiSvgIcon-fontSizeMedium .css-i4bv87-MuiSvgIcon-root {
+            height: auto;
+            margin-right: auto;
+        }
+
+        .carousel .slider-wrapper {
+            overflow: hidden;
+            margin: 0px !important;
+            width: 100%;
+            transition: height .15s ease-in;
+        }
+
+        .carousel .carousel-status {
+
+            top: 0;
+            right: 0;
+            padding: 5px;
+            font-size: 10px;
+            text-shadow: 0px 0px 0px rgba(255, 255, 255, 0.9) !important;
+            color: transparent !important;
+        }
+
     }
+
 
     &__discounteditems {
         display: grid;
@@ -231,7 +318,7 @@
                 width: auto;
                 display: grid;
                 padding-bottom: 50px;
-                height: 450px !important;
+
 
 
 
@@ -265,12 +352,12 @@
                 .carousel.carousel-slider {
                     margin: 0;
 
-                    height: 350px !important;
+                    height: 50px !important;
                     width: auto !important;
                     align-items: center !important;
                     display: grid !important;
                     justify-content: center;
-                    padding-bottom: 50px;
+                    padding-bottom: 0px !important;
                 }
 
                 // margin: 0;
@@ -311,7 +398,7 @@
                     margin-right: 6px;
                     white-space: nowrap;
                     overflow: hidden;
-                    border: 3px solid #fff;
+                    border: 0px solid #fff;
                     padding: 2px;
                 }
 
@@ -332,9 +419,15 @@
 
             }
         }
-
     }
 
+    .carousel .carousel-status {
+        display: none !important;
+    }
 
+    .carousel .thumbs-wrapper {
+        margin: -29px !important;
+        overflow: hidden;
+    }
 
 }

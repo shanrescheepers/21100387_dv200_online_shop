@@ -18,7 +18,7 @@ const ProductPage = () => {
     });
     const [image, setImage] = useState();
     const addCart = () => {
-        // console.log("Add Cart");
+        console.log("Add Cart");
         let payloadData = new FormData();
 
         let payload = {
@@ -27,8 +27,8 @@ const ProductPage = () => {
             printMedium: 1,
             size: 1
         }
-        // console.log("Product", product.id);
-        // console.log("Payload", payload);
+        console.log("Product", product.id);
+        console.log("Payload", payload);
         let cartControl = true;
         let currentCart = [];
         let currentStockInSession = JSON.parse(sessionStorage?.getItem("productCart"));
@@ -117,14 +117,14 @@ const ProductPage = () => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="p" component="div">
-                        <img src={image} style={{ width: "400px" }} />
+                        <img src={image} style={{ width: "auto", height: "400px" }} />
                         <h3 >"{product.name}"</h3>
                         <h3 >Description ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.description}</span></h3>
                         <h3>Discount ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>R {product.discount}.00</span></h3>
                         <h3>Artist ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.artist}</span></h3>
                         <h3>Category ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.category}</span></h3>
                         <h4>Stock ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.stock}</span></h4>
-                        <Button ><AddCircleIcon style={{ color: "green", height: "30px", paddingRight: "10px" }} size="large"> <button onClick={() => { addCart() }}></button ></AddCircleIcon>
+                        <Button onClick={() => { addCart() }}><AddCircleIcon style={{ color: "green", height: "30px", paddingRight: "10px" }} size="large"> <button ></button ></AddCircleIcon>
                             <p style={{ color: "green" }}>Add to Cart</p>
                         </Button>
                     </Typography>
