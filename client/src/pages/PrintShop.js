@@ -25,6 +25,7 @@ export function ShopImages() {
                 <IndividualProductCard
                     key={photo._id}
                     id={photo._id}
+                    discount={photo.discount}
                     name={photo.name}
                     imgUrl={"http://localhost:5000/wildlifeGalleryImages/" + photo.image} price={photo.price.v1} artist={photo.artist}
                     description={photo.description}

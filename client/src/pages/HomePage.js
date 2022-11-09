@@ -17,7 +17,6 @@ import { useEffect, useState } from 'react';
 import pangolin from '../image folder/1-1-12.jpg'
 import rangers from '../image folder/IMG_0991.jpg'
 import rangers1 from '../image folder/IMG_3199.JPG'
-
 import buffalo from '../image folder/buffalo.svg'
 import '../fonts/Calligraffitti-Regular.ttf'
 import '../scss/homePage.scss';
@@ -43,6 +42,10 @@ export function Homepage() {
     });
     const [image, setImage] = useState();
     //hier 
+
+
+
+
 
     const addCart = () => {
 
@@ -192,163 +195,7 @@ export function Homepage() {
                     </div>
                 </div >
             </div>
-            {/* <div className='homepage__featureitems'>
-                <h2 className='artworks' >LATEST ARTWORKS <hr ></hr></h2>
-                <p >Browse through our selected images of our latest incoming artworks from this week!</p>
-                <Carousel className='homepage__featureitems__carousel'>
-                    <div>
-                        <Card className='homepage__featureitems__carousel'>
-                            <CardMedia>
-                                <img src={buffalo} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
-                                    Buffalo Cow
-                                </Typography>
-                                {/* PULLS *
-                                <Typography className='homepage__featureitems__carousel__text__textbody'>
-                                    Shanre Scheepers - Buffalo
-                                    <hr style={{ width: "100px" }} />
-                                    R 5000
-                                </Typography>
-                            </CardContent>
-                            <IconButton>
-                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
-                            </IconButton>
 
-                        </Card>
-                    </div> */}
-
-
-
-            {/* <div>
-                        <Card className='homepage__featureitems__carousel'>
-                            <CardMedia>
-                                <img src={pangolin} className="homepage__intro__image" style={{ height: "160px", margin: "none", width: "100px" }} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
-                                    Unlawful Target
-                                </Typography>
-                                {/* PULLS 
-                                <Typography className='homepage__featureitems__carousel__text__textbody'>
-                                    Shanre Scheepers - Pangolin
-                                    <hr style={{ width: "100px" }} />
-                                    R 23889.00
-                                </Typography>
-                            </CardContent>
-                            <IconButton>
-                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }} onClick={() => { addCart() }}></ShoppingBasketIcon>
-                            </IconButton>
-
-                        </Card>
-                    </div> */}
-            {/* <div>
-                        <Card className='homepage__featureitems__carousel'>
-                            <CardMedia>
-                                <img src={rangers} className="homepage__intro__image" style={{ height: "160px", margin: "none", width: "130px" }} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
-                                    Rangers
-                                </Typography>
-                                {/* PULLS 
-                                <Typography className='homepage__featureitems__carousel__text__textbody'>
-                                    Chrisjan Visser - Rangers
-                                    <hr style={{ width: "100px" }} />
-                                    R 45000
-                                </Typography>
-                            </CardContent>
-                            <IconButton>
-                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
-                            </IconButton>
-
-                        </Card>
-                    </div> */}
-            {/* <div>
-                        <Card className='homepage__featureitems__carousel'>
-                            <CardMedia>
-                                <img src={rangers1} className="homepage__intro__image" style={{ height: "160px", margin: "none", width: "300px" }} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography gutterBottom className='homepage__featureitems__carousel__text'>
-                                    Rangers In Action
-                                </Typography>
-                                {/* PULLS 
-                                <Typography className='homepage__featureitems__carousel__text__textbody'>
-                                    Chrisjan Visser - Rangers
-                                    <hr style={{ width: "100px" }} />
-                                    R 55000
-                                </Typography>
-                            </CardContent>
-                            <IconButton>
-                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
-                            </IconButton>
-
-                        </Card>
-                    </div>
-
-
-
-                </Carousel>
-
-            </div> */}
-            {/* discoutns */}
-            {/* <div className='homepage__featureitems'>
-
-
-                <h2 className='discount' style={{ textAlign: "center", paddingBottom: "15px" }} >DISCOUNTS<hr className='discounthr' ></hr></h2>
-                <Carousel className='homepage__featureitems__carousel'>
-
-
-                    <div>
-                        <Card >
-                            <CardMedia>
-                                <img src={buffalo} className="homepage__discounteditems__intro__image" style={{ height: "160px", margin: "none" }} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography gutterBottom className='homepage__homepage__discounteditems__featureitems__carousel__text'>
-                                    Buffalo Cow
-                                </Typography>
-                                {/* PULLS 
-                                <Typography className='homepage__discounteditems__featureitems__carousel__text__textbody'>
-                                    Shanre Scheepers - Buffalo
-                                    <hr style={{ width: "100px" }} />
-                                    R 5000
-                                </Typography>
-                            </CardContent>
-                            <IconButton className='homepage__featureitems__cart'>
-                                <ShoppingBasketIcon style={{ height: "50px" }}></ShoppingBasketIcon>
-                            </IconButton>
-
-                        </Card>
-                    </div>
-                    <div>
-                        <Card >
-                            <CardMedia>
-                                <img src={rhino} className="homepage__intro__image" style={{ height: "160px", margin: "none" }} />
-                            </CardMedia>
-                            <CardContent>
-                                <Typography gutterBottom className='homepage__homepage__discounteditems__featureitems__carousel__text'>
-                                    Rhino Calf
-                                </Typography>
-                                {/* PULLS *
-                                <Typography className='homepage__discounteditems__featureitems__carousel__text__textbody'>
-                                    Tayla Jane McCurdy - Rhino Calf
-                                    <hr style={{ width: "100px" }} />
-                                    R 34000
-                                </Typography>
-                            </CardContent>
-                            <IconButton>
-                                <ShoppingBasketIcon style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
-                            </IconButton>
-
-                        </Card>
-
-                    </div>
-
-                </Carousel>
-            </div> */}
             <div className='homepage__newfeatureditems'>
                 <div className='homepage__newfeatureditems__newlatest'>
                     <h2 className='homepage__newfeatureditems__newlatest__h2'>NEWEST ARTWORKS</h2><hr></hr>

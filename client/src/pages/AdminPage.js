@@ -83,7 +83,7 @@ function Row(props) {
                 <TableCell align="right">{row.Quantity}</TableCell>
                 <TableCell align="right">{row.Address}</TableCell>
                 <TableCell>
-                    <IconButton onClick={() => {alert("Dispatched!")}}>
+                    <IconButton onClick={() => { alert("Dispatched!") }}>
                         <LocalShippingRoundedIcon></LocalShippingRoundedIcon>
                     </IconButton>
                 </TableCell>
@@ -114,7 +114,7 @@ function Row(props) {
                                             <TableCell>{historyRow.price}</TableCell>
                                             <TableCell align="right">{historyRow.amount}</TableCell>
                                             <TableCell align="right">
-                                                {Math.round(historyRow.price * historyRow.amount) }
+                                                {Math.round(historyRow.price * historyRow.amount)}
                                             </TableCell>
                                             <TableCell align="right">{historyRow.date}</TableCell>
                                         </TableRow>
@@ -168,8 +168,8 @@ export function AdminPage() {
 
     const [products, setProducts] = useState([]);
     const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
-    
-    
+
+
     const deleteProduct = (id, name) => {
         console.log("Delete Product ", id);
         if (window.confirm("Are you sure you want to delete: " + name) === true) {
@@ -187,12 +187,12 @@ export function AdminPage() {
 
             let data = res.data;
             console.log(data);
-            const photoItem = data.map((item) => 
+            const photoItem = data.map((item) =>
                 <ImageListItem key={item._id} cols={1} rows={1}>
 
-                    {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" +item.image)}
+                    {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" + item.image)}
                     <img
-                        {...srcset("http://localhost:5000/wildlifeGalleryImages/" +item.image, 300, 100,  1,  1)}
+                        {...srcset("http://localhost:5000/wildlifeGalleryImages/" + item.image, 300, 100, 1, 1)}
                         alt={item.name}
                         loading="lazy"
                         style={{ borderRadius: "8px" }} />
@@ -206,13 +206,13 @@ export function AdminPage() {
                         position="top"
                         actionIcon={
                             // Hoekom werk dit?!?!?!?!? Daai onClick met => function
-                            <Button variant="outlined" onClick={()=>{deleteProduct(item._id, item.name)}} startIcon={<DeleteIcon />}>
+                            <Button variant="outlined" onClick={() => { deleteProduct(item._id, item.name) }} startIcon={<DeleteIcon />}>
                                 Delete
                             </Button>
                         }
-                    actionPosition="left"
-                />
-            </ImageListItem>
+                        actionPosition="left"
+                    />
+                </ImageListItem>
             );
             console.log(photoItem);
             setProducts(photoItem)
@@ -268,19 +268,19 @@ export function AdminPage() {
         // console.log(myDate);
 
         let price1 = addProduct.price
-        let price2 = Math.round(addProduct.price/1.8)
-        let price3 = Math.round(price2-170)
+        let price2 = Math.round(addProduct.price / 1.8)
+        let price3 = Math.round(price2 - 170)
 
         let payload = {
             date: myDate,
             name: addProduct.name,
             description: addProduct.description,
-            price:  {v0:price1, v1: price2, v2: price3},
+            price: { v0: price1, v1: price2, v2: price3 },
             discount: addProduct.discount,
-            printMedium: 
-                {v0:"Stretched Canvas", v1: "Loose Canvas", v2: "Matte Fine Art Paper"},
+            printMedium:
+                { v0: "Stretched Canvas", v1: "Loose Canvas", v2: "Matte Fine Art Paper" },
             artist: addProduct.artist,
-            size:  {v0:"A1 - 594 x 841 mm", v1: "A2 - 420 x 594 mm", v2: "A3 - 297 x 420 mm"},
+            size: { v0: "A1 - 594 x 841 mm", v1: "A2 - 420 x 594 mm", v2: "A3 - 297 x 420 mm" },
             category: addProduct.category,
             stock: addProduct.stock
         }
@@ -288,7 +288,7 @@ export function AdminPage() {
         payloadData.append("information", JSON.stringify(payload));
 
         payloadData.append("image", newProductImage);
-    
+
         // console.log(JSON.stringify(payloadData);
 
         Axios.post('http://localhost:5000/product', payloadData).then(() => {
@@ -311,20 +311,21 @@ export function AdminPage() {
         });
 
     };
-    
+
 
     return (
         <div className='adminpage'>
             {/* GALLERY STOCK */}
             <div className='adminpage__ingallery'>
-                <span className='adminpage__ingallery__addbtn'>
-
+                <div className='adminpage__ingallery__addbtn'>
+                    <p>Admin, here you can add a new image with ease! Just click the Add Button!</p>
                     <IconButton variant="contained" style={{ width: "200px", height: "40px", borderRadius: "10px", padding: "10px" }} onClick={handleClickOpen}>
                         <Typography variant="p" component="div" className='adminpage__ingallery__addbtn__add'>
                             add new product
                         </Typography>
                         <AddPhotoAlternateRoundedIcon fontSize="large" />
-                    </IconButton></span>
+                    </IconButton>
+                </div>
 
                 <Dialog open={open} onClose={handleClose} >
 
@@ -442,8 +443,8 @@ export function AdminPage() {
                         // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
                         transform: 'translateZ(0)',
                     }}
-                    rowHeight={200}
-                    gap={8}>
+                    rowHeight={100}
+                    gap={15}>
 
                     {products}
                 </ImageList>

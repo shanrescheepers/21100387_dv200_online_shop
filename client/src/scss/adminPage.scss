@@ -5,9 +5,10 @@
 
     &__ingallery {
         display: grid;
-        grid-template-columns: 3% 5%;
-        grid-auto-rows: 100px 100px;
-        padding: 8px;
+
+        grid-auto-rows: 200px 200px;
+        grid-template-columns: 10px 200px;
+        padding: 32px;
         padding-top: 80px !important;
 
 
@@ -43,5 +44,48 @@
         overflow: scroll;
     }
 
+    .MuiImageList-root .MuiImageList-standard .css-z3j1b2-MuiImageList-root {
+        grid-template-columns: 200px 200px;
+        gap: 8px;
+    }
 
+    .css-ta95xa-MuiImageListItem-root .MuiImageListItem-img {
+
+        width: 200px;
+        height: auto;
+        display: block;
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+
+    }
+
+    .MuiImageListItem-root .MuiImageListItem-standard .css-ta95xa-MuiImageListItem-root {
+        height: 200px;
+        /* grid-column-end: span 1; */
+        /* grid-row-end: span 1; */
+        width: 420px !important;
+    }
+
+    .MuiImageListItemBar-root,
+    .MuiImageListItemBar-positionTop .css-15n6zrv-MuiImageListItemBar-root,
+    .MuiImageListItemBar-titleWrap,
+    .MuiImageListItemBar-titleWrapTop,
+    .MuiImageListItemBar-titleWrapActionPosLeft,
+    .css-3pkysr-MuiImageListItemBar-titleWrap {
+        border-radius: 8px;
+        width: 420px !important;
+    }
+
+    .css-ta95xa-MuiImageListItem-root .MuiImageListItem-img {
+        width: 178px;
+        height: 70px !important;
+        background-size: cover !important;
+        padding-top: 13px;
+        padding-left: 8px;
+        /* display: block; */
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+    }
 }

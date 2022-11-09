@@ -25,6 +25,33 @@ router.get('/products', async (req, res) => {
         .catch(error => res.status(500).json(error));
 });
 
+// READ Nuutste
+router.get('/newestProducts', async (req, res) => {
+    const products = await Product.find()
+    dates = []
+    for (let i = products.length - 3; i < products.length; i++) {
+        const element = products[i];
+        dates.push(element)
+    }
+    res.json(dates)
+});
+
+router.get('/discountProducts', async (req, res) => {
+    const products = await Product.find()
+    dates = []
+    max = 3
+    for (let i = 0; i < max; i++) {
+        const element = products[i];
+        // console.log(element.discount)
+        if (element.discount != 0) {
+            dates.push(element)
+        } else {
+            max = max + 1
+        }
+    }
+    res.json(dates)
+});
+
 router.get('/product/:id', async (req, res) => {
     await Product.findById(req.params.id).then(product => res.json(product))
         .catch(error => res.status(500).json(error));
@@ -33,31 +60,31 @@ router.get('/product/:id', async (req, res) => {
 // CREATE TWEEDE
 router.post('/product', uploadGalleryPhotograph.single('image'),
     (req, res) => {
-        
+
         // let data = JSON.parse(req.body);
         // console.log("Post: ", req.body)
         // console.log("Date: ", req.body.date)
         // console.log("Information: ", JSON.parse(req.body.information))
         let data = JSON.parse(req.body.information)
         // console.log(data);
-  
+
         let product = new Product({
             date: data.date,
             description: data.description,
             name: data.name,
             price: {
-                v0: data.price.v0, 
+                v0: data.price.v0,
                 v1: data.price.v1,
                 v2: data.price.v2
             },
             discount: data.discount,
             printMedium: {
-                v0: data.printMedium.v0, 
+                v0: data.printMedium.v0,
                 v1: data.printMedium.v1,
                 v2: data.printMedium.v2
             },
             size: {
-                v0: data.size.v0, 
+                v0: data.size.v0,
                 v1: data.size.v1,
                 v2: data.size.v2
             },
@@ -69,16 +96,16 @@ router.post('/product', uploadGalleryPhotograph.single('image'),
 
         // console.log("Product: ", product);
         product.save()
-        .then(item => {
-            res.json(item);
-        })
-        .catch(err => {
-            res.status(400).json({msg: "There was an error ", err: err});
-        })
+            .then(item => {
+                res.json(item);
+            })
+            .catch(err => {
+                res.status(400).json({ msg: "There was an error ", err: err });
+            })
         // .then(response => 
         //     res.json(response))
         // .catch(error => res.status(500).json(error));
-});
+    });
 
 // UPDATE
 router.put('/product/:id', async (req, res) => {

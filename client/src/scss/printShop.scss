@@ -7,6 +7,9 @@
     justify-self: center;
     height: auto;
 
+    .MuiTypography-root .MuiTypography-body1 .card__featureitems__carousel__text__textbody .css-ahj2mt-MuiTypography-root {
+        height: 70px !important;
+    }
 
     &__info,
     h2 {

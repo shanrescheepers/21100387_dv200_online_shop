@@ -62,8 +62,8 @@
             &__carousel .carousel {
                 grid-gap: 32px;
                 margin-right: 100px;
-                width: 500px !important;
-                height: 400px !important;
+                width: 300px !important;
+                height: 450px !important;
             }
         }
 
@@ -85,7 +85,7 @@
 
     &__intro {
         display: grid;
-        padding-top: 400px;
+        padding-top: 270px;
         grid-template-columns: 50% 50%;
 
         &__image {

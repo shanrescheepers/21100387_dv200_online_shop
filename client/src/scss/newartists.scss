@@ -1,0 +1,103 @@
+.artist {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 300px 300px;
+    width: 100%;
+    margin: 0px;
+
+    height: 50vh;
+
+    &__1 {
+        display: grid;
+        // background-color: antiquewhite;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto;
+        padding: 32px;
+
+        &__img {
+            background-image: url('../image folder/chrischris.svg');
+            background-repeat: no-repeat;
+            box-shadow: 10px 10px 24px 0 rgba(0, 0, 0, 0.2),
+                -12px -10px 24px 0 rgba(255, 255, 255, 0.5);
+            width: 200px;
+            height: 250px;
+            background-size: cover;
+        }
+
+        &__desc {
+            font-size: 12px;
+            text-align: left;
+        }
+
+    }
+
+    &__2 {
+        display: grid;
+        // background-color: rgb(199, 140, 62);
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto;
+        padding: 32px;
+
+        &__img {
+            background-image: url('../image folder/shanshan.svg');
+            background-repeat: no-repeat;
+            box-shadow: 10px 10px 24px 0 rgba(0, 0, 0, 0.2),
+                -12px -10px 24px 0 rgba(255, 255, 255, 0.5);
+            width: 200px;
+            height: 250px;
+            background-size: cover;
+        }
+
+        &__desc {
+            font-size: 12px;
+            text-align: left;
+        }
+    }
+
+    &__3 {
+        display: grid;
+        // background-color: rgb(63, 44, 19);
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto;
+        padding: 32px;
+
+        &__img {
+            background-image: url('../image folder/taytay.svg');
+            background-repeat: no-repeat;
+            box-shadow: 10px 10px 24px 0 rgba(0, 0, 0, 0.2),
+                -12px -10px 24px 0 rgba(255, 255, 255, 0.5);
+            width: 200px;
+            height: 250px;
+            background-size: cover;
+
+        }
+
+        &__desc {
+            font-size: 12px;
+            text-align: left;
+        }
+    }
+
+    &__4 {
+        display: grid;
+        // background-color: rgb(127, 119, 108);
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto;
+        padding: 32px;
+
+        &__img {
+            background-image: url('../image folder/catcat.svg');
+            background-repeat: no-repeat;
+            box-shadow: 10px 10px 24px 0 rgba(0, 0, 0, 0.2),
+                -12px -10px 24px 0 rgba(255, 255, 255, 0.5);
+            width: 200px;
+            height: 250px;
+            background-size: cover;
+        }
+
+        &__desc {
+            font-size: 12px;
+            text-align: left;
+        }
+    }
+}
