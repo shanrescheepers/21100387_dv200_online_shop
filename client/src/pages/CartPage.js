@@ -406,7 +406,10 @@ const CartPage = () => {
     }
 
 
-
+    function buyPage() {
+        navigate('/buypage');
+        sessionStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+    }
 
 
     useEffect(() => {
@@ -535,7 +538,7 @@ const CartPage = () => {
             <div style={{ bottom: "0", textAlign: "right", marginRight: "40px" }}>
                 <h3>Total Price: R{totalPrice}</h3>
 
-                <IconButton aria-label="Checkout" color="primary" onClick={() => { navigate('/buypage'); }}>
+                <IconButton aria-label="Checkout" color="primary" onClick={() => { buyPage() }}>
                     <ShoppingBagIcon /> Checkout
                 </IconButton>
             </div>

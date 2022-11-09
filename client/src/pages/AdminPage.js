@@ -37,24 +37,13 @@ import axios from 'axios';
 
 
 // TABLE
-function createData(name, TotalPrice, Quantity) {
+function createData(name, TotalPrice, Quantity, order) {
     return {
         name,
         TotalPrice,
         Quantity,
-        history: [
-            {
-                date: '2022-09-00',
-                Item: 'The Lion Lick',
-                amount: 6,
-                price: 3000
-            },
-            {
-                date: '2022-09-00',
-                Item: 'Nyeleti',
-                amount: 7,
-                price: 3000
-            },
+        order: [
+
         ],
     };
 }
@@ -106,7 +95,7 @@ function Row(props) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {row.history.map((historyRow) => (
+                                    {row.order.map((historyRow) => (
                                         <TableRow key={historyRow.date}>
                                             <TableCell component="th" scope="row">
                                                 {historyRow.Item}
@@ -135,7 +124,7 @@ Row.propTypes = {
         TotalPrice: PropTypes.number.isRequired,
         Quantity: PropTypes.number.isRequired,
         Address: PropTypes.string.isRequired,
-        history: PropTypes.arrayOf(
+        order: PropTypes.arrayOf(
             PropTypes.shape({
                 amount: PropTypes.number.isRequired,
                 price: PropTypes.number.isRequired,
@@ -168,6 +157,33 @@ export function AdminPage() {
 
     const [products, setProducts] = useState([]);
     const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
+
+    useEffect(() => {
+
+        Axios.get('http://localhost:5000/orders').then(res => {
+            let items = []
+
+            let data = res.data;
+            console.log(data);
+
+            data.forEach(el => {
+
+                let row = []
+                row = ({
+
+                })
+
+                // items.push(createData()
+
+            })
+
+            // setRows(items)
+
+
+
+
+        })
+    }, [])
 
 
     const deleteProduct = (id, name) => {

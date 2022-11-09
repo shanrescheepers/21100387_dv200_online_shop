@@ -42,10 +42,14 @@ import { Alert, ButtonGroup } from '@mui/material';
 import { width } from '@mui/system';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import '../scss/buypage.scss';
+import { useNavigate } from 'react-router-dom';
 
 
-export function BuyPage(props) {
+export function BuyPage() {
+    let navigate = useNavigate();
 
+    let totalPrice = JSON.parse(sessionStorage?.getItem("totalPrice"));
+    console.log(totalPrice);
     const [addProduct, setAddProduct] = useState({
         name: '',
         surname: '',
@@ -87,6 +91,7 @@ export function BuyPage(props) {
         Axios.post('http://localhost:5000/orders', payload).then(() => {
             alert("Order Made!")
             sessionStorage.clear();
+            navigate('/printshop');
         }).catch(err => {
             alert(err)
         })
@@ -207,7 +212,7 @@ export function BuyPage(props) {
                     <p>R100</p>
                     <hr></hr>
                     <h3>Total to Pay :</h3>
-                    <p>R6000</p>
+                    <p>R{totalPrice + 100}</p>
 
                     <div className='userInfo__totals__buybutton'>
                         <IconButton aria-label="Buy Now" color="primary" onClick={() => { buyNow() }} >
