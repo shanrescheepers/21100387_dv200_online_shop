@@ -1,0 +1,39 @@
+.userInfo {
+    display: grid;
+    grid-template-columns: 900px 300px;
+    text-align: center;
+    grid-template-rows: auto;
+    width: fit-content;
+
+    &__box {
+
+        padding-left: 16px;
+
+        &__userinputs {
+            width: 800px;
+
+            height: auto;
+
+            // &__box {}
+        }
+    }
+
+
+
+    &__totals {
+        margin-top: 32px !important;
+        height: 30px;
+
+
+        &__buybutton {
+            margin-top: 80px !important;
+            width: 200px !important;
+            height: 90px !important;
+            text-align: center;
+            justify-self: center;
+            padding-left: 40px;
+        }
+    }
+
+
+}

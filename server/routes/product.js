@@ -35,7 +35,7 @@ router.get('/newestProducts', async (req, res) => {
     }
     res.json(dates)
 });
-
+// gee 3 discounted products
 router.get('/discountProducts', async (req, res) => {
     const products = await Product.find()
     dates = []

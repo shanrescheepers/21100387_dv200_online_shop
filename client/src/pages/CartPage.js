@@ -41,12 +41,16 @@ import AddIcon from '@mui/icons-material/Add';
 import { Alert, ButtonGroup } from '@mui/material';
 import { width } from '@mui/system';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import { useNavigate } from 'react-router-dom';
 
-function createData(id, name, activePrice, price1, price2, price3, artist, quantity, activeSize, size1, size2, size3, activePrintMedium, printMedium1, printMedium2, printMedium3, image) {
+
+function createData(id, name, activePrice, discount, baseDiscount, price1, price2, price3, artist, quantity, activeSize, size1, size2, size3, activePrintMedium, printMedium1, printMedium2, printMedium3, image) {
     return {
         id,
         name,
         activePrice,
+        discount,
+        baseDiscount,
         price1,
         price2,
         price3,
@@ -68,17 +72,20 @@ function createData(id, name, activePrice, price1, price2, price3, artist, quant
 
 const CartPage = () => {
 
+    let navigate = useNavigate();
 
     const [products, setProducts] = useState([]);
     const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
 
     let currentCart = sessionStorage.getItem("productCart")
     // console.log(currentCart);
-    const [product, setProduct] = useState({
-
-    });
+    const [product, setProduct] = useState({});
     const [image, setImage] = useState();
     const [rows, setRows] = useState([]);
+
+    const [totalPrice, setTotalPrice] = useState(0);
+
+
 
 
     // TABLE
@@ -91,6 +98,39 @@ const CartPage = () => {
         const [price, setPrice] = useState(row.activePrice);
         const [quantity, setQuantity] = useState(row.quantity)
 
+        function getPrice(quantity, activeSize, discount, price1, price2, price3) {
+            let activePrice = 0
+            if (activeSize == "A1 - 594 x 841 mm") {
+                activePrice = price1 * quantity
+
+            }
+            if (activeSize == "A2 - 420 x 594 mm") {
+                activePrice = price2 * quantity
+            }
+            if (activeSize == "A3 - 297 x 420 mm") {
+                activePrice = price3 * quantity
+            }
+            let discounPrice = discount * quantity
+            return activePrice - discounPrice
+        }
+
+        function getDiscount(quantity, discount) {
+            let discounPrice = discount * quantity
+            console.log(discounPrice);
+            return discounPrice
+        }
+
+        function getTotalPrice() {
+            let totalPrice = 0
+            for (let i = 0; i < rows.length; i++) {
+                const element = rows[i];
+                console.log(element.id);
+                totalPrice = totalPrice + element.activePrice
+            }
+
+            setTotalPrice(totalPrice)
+            console.log(totalPrice);
+        }
 
         const deleteProduct = (id, name) => {
             let tempRows = []
@@ -124,6 +164,7 @@ const CartPage = () => {
             console.log(tempRows);
 
             setRows(tempRows)
+            getTotalPrice()
         }
 
         const increaseProduct = (id, name) => {
@@ -145,6 +186,27 @@ const CartPage = () => {
             }
             sessionStorage.setItem('productCart', JSON.stringify(currentStockInSession));
             console.log(JSON.parse(sessionStorage?.getItem("productCart")));
+            let tempRows = []
+
+            for (let i = 0; i < rows.length; i++) {
+                let element = rows[i];
+                console.log(element);
+                if (id == element.id) {
+                    console.log("Match row found!", element.id);
+                    element.activePrice = getPrice(element.quantity, element.activeSize, element.baseDiscount, element.price1, element.price2, element.price3)
+                    element.discount = getDiscount(element.quantity, element.baseDiscount)
+                    tempRows.push(element)
+                }
+                else {
+                    tempRows.push(element)
+                }
+            }
+            console.log(tempRows);
+
+            setRows(tempRows)
+            getTotalPrice()
+
+            // setGatherRenderedProductInfo(true)
         }
 
 
@@ -152,18 +214,45 @@ const CartPage = () => {
             console.log("decrease Product ", id);
             let currentStockInSession = JSON.parse(sessionStorage?.getItem("productCart"));
             // sessionStorage.clear();
-            console.log(currentStockInSession);
+            // console.log(currentStockInSession);
+            let tempRows = []
+
             let deletePro = 0;
+
             for (let i = 0; i < currentStockInSession.length; i++) {
                 const element = currentStockInSession[i];
                 if (id == element.productId) {
                     element.quantity = element.quantity - 1
+                    if (element.quantity == -1) {
+                        element.quantity = 0
+                    }
                     setQuantity(element.quantity)
                     row.quantity = element.quantity
                 }
             }
             sessionStorage.setItem('productCart', JSON.stringify(currentStockInSession));
             console.log(JSON.parse(sessionStorage?.getItem("productCart")));
+
+            for (let i = 0; i < rows.length; i++) {
+                let element = rows[i];
+                console.log(element);
+                if (id == element.id) {
+                    console.log("Match row found!", element.id);
+                    element.activePrice = getPrice(element.quantity, element.activeSize, element.baseDiscount, element.price1, element.price2, element.price3)
+                    element.discount = getDiscount(element.quantity, element.baseDiscount)
+                    tempRows.push(element)
+
+                }
+                else {
+                    tempRows.push(element)
+                }
+
+
+            }
+            console.log(tempRows);
+
+            setRows(tempRows)
+            getTotalPrice()
         }
         const handleChange = (event: SelectChangeEvent) => {
             console.log(event.target);
@@ -224,6 +313,8 @@ const CartPage = () => {
             console.log(currentStockInSession);
             sessionStorage.setItem('productCart', JSON.stringify(currentStockInSession));
             console.log(JSON.parse(sessionStorage?.getItem("productCart")));
+            getTotalPrice()
+
         };
 
 
@@ -235,7 +326,9 @@ const CartPage = () => {
                     <TableCell component="th" scope="row">
                         {row.name}
                     </TableCell>
-                    <TableCell align="right">{row.activePrice}</TableCell>
+                    <TableCell align="right">R{row.activePrice}</TableCell>
+                    <TableCell align="right">R{row.discount}</TableCell>
+
                     <TableCell align="right">{row.artist}</TableCell>
                     <TableCell align="right"><IconButton aria-label="increase" color="primary" onClick={() => { increaseProduct(row.id) }}>
                         <AddIcon />
@@ -285,6 +378,7 @@ const CartPage = () => {
         row: PropTypes.shape({
             name: PropTypes.string.isRequired,
             activePrice: PropTypes.number.isRequired,
+            discount: PropTypes.number.isRequired,
             price1: PropTypes.number.isRequired,
             price2: PropTypes.number.isRequired,
             price3: PropTypes.number.isRequired,
@@ -321,7 +415,7 @@ const CartPage = () => {
         console.log(currentStockInSession);
         let items = []
         // setRows([])
-
+        let totalPrice = 0
         currentStockInSession?.forEach(el => {
             // console.log(el);
 
@@ -342,6 +436,7 @@ const CartPage = () => {
                             v2: data.price.v2
                         },
                         discount: data.discount,
+                        baseDiscount: data.discount,
                         printMedium: {
                             v0: data.printMedium.v0,
                             v1: data.printMedium.v1,
@@ -387,177 +482,26 @@ const CartPage = () => {
                     }
 
                     activePrice = activePrice * el.quantity
+                    let discount = row.discount * el.quantity
+                    totalPrice = totalPrice + activePrice
 
-                    items.push(createData(row.id, row.name, activePrice, row.price.v0, row.price.v1, row.price.v2, row.artist, el.quantity, activeSize, row.size.v0, row.size.v1, row.size.v2, activePrintMedium, row.printMedium.v0, row.printMedium.v1, row.printMedium.v2, URL))
+                    console.log(totalPrice)
+                    setTotalPrice(totalPrice)
+
+                    items.push(createData(row.id, row.name, activePrice, discount, row.discount, row.price.v0, row.price.v1, row.price.v2, row.artist, el.quantity, activeSize, row.size.v0, row.size.v1, row.size.v2, activePrintMedium, row.printMedium.v0, row.printMedium.v1, row.printMedium.v2, URL))
                 })
             setRows(items)
             // console.log(items);
             setGatherRenderedProductInfo(false)
-        });
 
+        });
     }, [gatherRenderedProductInfo]);
 
-    const [addProduct, setAddProduct] = useState({
-        name: '',
-        surname: '',
-        email: '',
-        postalcode: '',
-        street: '',
-        country: ''
-    })
 
-    const handleAddedNewProductChange = (event) => {
-        const value = event.target.value;
-        setAddProduct({
-            ...addProduct,
-            [event.target.name]: value
-        });
 
-    };
-
-    function buyNow() {
-        const payloadData = new FormData()
-
-        let currentStockInSession = JSON.parse(sessionStorage?.getItem("productCart"));
-        console.log(currentStockInSession);
-
-        let payload = {
-            name: addProduct.name,
-            surname: addProduct.surname,
-            email: addProduct.email,
-            postalcode: addProduct.postalcode,
-            street: addProduct.street,
-            country: addProduct.country,
-            products: [
-                currentStockInSession
-
-            ]
-        }
-
-        payloadData.append("information", JSON.stringify(payload));
-
-        console.log(JSON.stringify(payloadData));
-
-        Axios.post('http://localhost:5000/orders', payload).then(() => {
-            setGatherRenderedProductInfo(true)
-
-            // setOpenSnackbar(true)
-        }).catch(err => {
-            alert(err)
-        }).finally(() => {
-            // setOpen(false)
-        });
-        sessionStorage.clear();
-        alert("Order Made!")
-
-    }
 
     return (
         <div className='cart'>
-            <div className='userInfo'>
-                <Box component="form" sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
-                }}
-                    noValidate
-                    autoComplete="off"
-                >
-
-                    <TextField
-                        margin="normal"
-                        name="name"
-                        label="name"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.name}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        name="surname"
-                        label="surname"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.surname}
-                        onChange={handleAddedNewProductChange}
-                    />
-
-                    <TextField
-                        margin="normal"
-                        name="email"
-                        label="email"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.email}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        name="postalcode"
-                        label="postalcode"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.postalcode}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        name="street"
-                        label="street"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.street}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        name="country"
-                        label="country"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.country}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        name="cardNumber"
-                        label="cardNumber"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.cardNumber}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        name="cvv"
-                        label="cvv"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.cvv}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <TextField
-                        margin="normal"
-                        name="bank"
-                        label="bank"
-                        type="text"
-                        fullWidth
-                        variant="outlined"
-                        value={addProduct.bank}
-                        onChange={handleAddedNewProductChange}
-                    />
-                    <IconButton aria-label="Buy Now" color="primary" onClick={() => { buyNow() }}>
-                        <ShoppingBagIcon /> Buy Now
-                    </IconButton>
-                </Box>
-            </div>
 
             <div className='orderTable'>
                 <TableContainer component={Paper}>
@@ -566,7 +510,8 @@ const CartPage = () => {
                             <TableRow>
                                 <TableCell></TableCell>
                                 <TableCell>Name</TableCell>
-                                <TableCell align="right">Price</TableCell>
+                                <TableCell align="right">Final Price</TableCell>
+                                <TableCell align="right"> - Discount</TableCell>
                                 <TableCell align="right">Artist</TableCell>
                                 <TableCell align="right">Quantity</TableCell>
                                 <TableCell align="right">Size</TableCell>
@@ -581,6 +526,18 @@ const CartPage = () => {
                     </Table>
                 </TableContainer>
 
+            </div>
+
+            <div>
+
+            </div>
+
+            <div style={{ bottom: "0", textAlign: "right", marginRight: "40px" }}>
+                <h3>Total Price: R{totalPrice}</h3>
+
+                <IconButton aria-label="Checkout" color="primary" onClick={() => { navigate('/buypage'); }}>
+                    <ShoppingBagIcon /> Checkout
+                </IconButton>
             </div>
 
         </div>

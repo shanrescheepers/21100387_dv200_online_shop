@@ -11,8 +11,7 @@ import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import Artists from './pages/Artists';
 import CartPage from './pages/CartPage';
-
-
+import BuyPage from './pages/BuyPage';
 
 
 function App() {
@@ -28,7 +27,9 @@ function App() {
           <Route path="/printshop" element={<ShopImages />} />
           <Route path="/productpage" element={<ProductPage />} />
           <Route path="/theartists" element={<Artists />} />
-          <Route path="/cartpage" element={<CartPage />}/>
+          <Route path="/cartpage" element={<CartPage />} />
+          <Route path="/buypage" element={<BuyPage />} />
+
         </Routes>
       </BrowserRouter>
       <Footer />

@@ -112,15 +112,15 @@ const IndividualProductCard = (props) => {
                     <Typography gutterBottom variant="p" component="div">
                         R{props.price - props.discount}.00
                     </Typography>
-                    <Typography className='card__featureitems__carousel__text__textbody'>
+                    <Typography className='card__featureitems__carousel__text__textbody' style={{ height: "80px" }}>
                         {props.artist} - {props.description}
                         <hr style={{ width: "100px" }} />
                     </Typography>
                 </CardContent>
-                <IconButton>
+                <IconButton gutterBottom >
                     <ShoppingBasketIcon onClick={() => addCart()} style={{ height: "50px", marginRight: "16px" }}></ShoppingBasketIcon>
                 </IconButton>
-                <Button onClick={() => toProduct()} variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
+                <Button gutterBottom onClick={() => toProduct()} variant="contained" href="#outlined-buttons" style={{ height: "50px", width: "150px", margin: "none", backgroundColor: "#B6AF93" }}  >
                     DESCRIPTION
                 </Button>
             </Card>
