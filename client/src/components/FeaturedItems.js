@@ -101,7 +101,7 @@ export function Featureditemcarousel() {
 
     const [gatherNewestProductInfo, setGatherNewestProductInfo] = useState();
     useEffect(() => {
-        Axios.get('http://localhost:5000/newestProducts').then(res => {
+        Axios.get('http://localhost:5003/newestProducts').then(res => {
             let data = res.data;
             console.log(data);
             const photoItem = data.map((photo) =>
@@ -110,7 +110,7 @@ export function Featureditemcarousel() {
                     <Card className='homepage__featureitems__carousel'>
                         <CardMedia className='card__intro__image'
                             component="img"
-                            src={"http://localhost:5000/wildlifeGalleryImages/" + photo.image}
+                            src={"http://localhost:5003/wildlifeGalleryImages/" + photo.image}
                             alt={photo.name}
                             height="200"
                             style={{ margin: "none" }} />

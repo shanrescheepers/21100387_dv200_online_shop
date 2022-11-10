@@ -137,7 +137,7 @@ const IndividualProductCard = (props) => {
         //          <Typography className='homepage__featureitems__carousel__text__textbody'>
         //              Shanre Scheepers - Buffalo
         //              <hr style={{ width: "100px" }} />
-        //              R 5000
+        //              R 5003
         //          </Typography>
         //      </CardContent>
         //      <IconButton>

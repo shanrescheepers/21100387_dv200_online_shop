@@ -423,7 +423,7 @@ const CartPage = () => {
         currentStockInSession?.forEach(el => {
             // console.log(el);
 
-            Axios.get('http://localhost:5000/product/' + el.productId)
+            Axios.get('http://localhost:5003/product/' + el.productId)
                 .then(res => {
 
                     let data = res.data;
@@ -455,7 +455,7 @@ const CartPage = () => {
                         category: data.category,
                         stock: data.stock,
                     })
-                    let URL = 'http://localhost:5000/wildlifeGalleryImages/' + data.image;
+                    let URL = 'http://localhost:5003/wildlifeGalleryImages/' + data.image;
                     setImage(URL);
                     // console.log(row);
 

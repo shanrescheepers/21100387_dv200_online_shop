@@ -17,7 +17,7 @@ export function ShopImages() {
     const [gatherProductInfo, setGatherProductInfo] = useState();
     const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
     useEffect(() => {
-        Axios.get('http://localhost:5000/products').then(res => {
+        Axios.get('http://localhost:5003/products').then(res => {
             let data = res.data;
             console.log(data);
             const photoItem = data.map((photo) =>
@@ -27,7 +27,7 @@ export function ShopImages() {
                     id={photo._id}
                     discount={photo.discount}
                     name={photo.name}
-                    imgUrl={"http://localhost:5000/wildlifeGalleryImages/" + photo.image} price={photo.price.v1} artist={photo.artist}
+                    imgUrl={"http://localhost:5003/wildlifeGalleryImages/" + photo.image} price={photo.price.v1} artist={photo.artist}
                     description={photo.description}
                 />);
 

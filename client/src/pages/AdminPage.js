@@ -74,7 +74,7 @@ export function AdminPage() {
         let totalPrice = 0
         // console.log(el);
 
-        Axios.get('http://localhost:5000/orders/')
+        Axios.get('http://localhost:5003/orders/')
             .then(res => {
 
                 let data = res.data;
@@ -87,7 +87,7 @@ export function AdminPage() {
                         // console.log(product)
                         quantity = quantity + product.quantity
                         let currentItem = []
-                        Axios.get('http://localhost:5000/product/' + product.productId)
+                        Axios.get('http://localhost:5003/product/' + product.productId)
                             .then(res2 => {
                                 console.log(res2)
 
@@ -167,7 +167,7 @@ export function AdminPage() {
 
             // payloadData.append("information", JSON.stringify(payload));
 
-            Axios.patch('http://localhost:5000/updateProduct/' + element.productId, payload).then(() => {
+            Axios.patch('http://localhost:5003/updateProduct/' + element.productId, payload).then(() => {
                 console.log("orders updated!")
 
             }).catch(err => {
@@ -176,7 +176,7 @@ export function AdminPage() {
 
         });
 
-        Axios.delete('http://localhost:5000/order/' + id)
+        Axios.delete('http://localhost:5003/order/' + id)
             .then(res => {
                 let data = res.data;
                 setUpdateOrders(true)
@@ -305,7 +305,7 @@ export function AdminPage() {
     const deleteProduct = (id, name) => {
         console.log("Delete Product ", id);
         if (window.confirm("Are you sure you want to delete: " + name) === true) {
-            axios.delete('http://localhost:5000/product/' + id).then(res => {
+            axios.delete('http://localhost:5003/product/' + id).then(res => {
                 console.log(res);
                 setGatherRenderedProductInfo(true)
             })
@@ -315,16 +315,16 @@ export function AdminPage() {
 
     useEffect(() => {
 
-        Axios.get('http://localhost:5000/products').then(res => {
+        Axios.get('http://localhost:5003/products').then(res => {
 
             let data = res.data;
             // console.log(data);
             const photoItem = data.map((item) =>
                 <ImageListItem key={item._id} cols={1} rows={2}>
 
-                    {/* {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" + item.image)} */}
+                    {/* {console.log("Image", "http://localhost:5003/wildlifeGalleryImages/" + item.image)} */}
                     <img
-                        {...srcset("http://localhost:5000/wildlifeGalleryImages/" + item.image, 300, 100, 1, 1)}
+                        {...srcset("http://localhost:5003/wildlifeGalleryImages/" + item.image, 300, 100, 1, 1)}
                         alt={item.name}
                         loading="lazy"
                         style={{ borderRadius: "8px" }} />
@@ -423,7 +423,7 @@ export function AdminPage() {
 
         // console.log(JSON.stringify(payloadData);
 
-        Axios.post('http://localhost:5000/product', payloadData).then(() => {
+        Axios.post('http://localhost:5003/product', payloadData).then(() => {
             setGatherRenderedProductInfo(true)
 
             setOpenSnackbar(true)
