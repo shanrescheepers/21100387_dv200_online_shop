@@ -80,7 +80,7 @@ const ProductPage = () => {
     useEffect(() => {
         // sessionStorage.clear();
         console.log("Use effect load session: ", sessionStorage.getItem("productCart"));
-        Axios.get('http://localhost:5000/product/' + productId)
+        Axios.get('http://localhost:5003/product/' + productId)
             .then(res => {
                 let data = res.data;
                 console.log(data);
@@ -108,7 +108,7 @@ const ProductPage = () => {
                     category: data.category,
                     stock: data.stock,
                 })
-                let URL = 'http://localhost:5000/wildlifeGalleryImages/' + data.image;
+                let URL = 'http://localhost:5003/wildlifeGalleryImages/' + data.image;
                 setImage(URL);
 
             })
