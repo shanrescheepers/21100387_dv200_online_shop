@@ -1,6 +1,6 @@
 .adminpage {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 48%;
 
 
     &__ingallery {
@@ -14,14 +14,26 @@
 
 
         &__addbtn {
-            margin-top: -70px;
+            margin-top: -30px;
             height: 40px;
-            margin-right: -700px;
+            display: grid;
+            grid-template-columns: 500px;
+
 
             &__add {
+                padding: 8px;
+                grid-template-columns: 1fr;
                 font-size: 18px;
+                grid-template-rows: 1fr 1fr;
                 font-weight: 300;
-
+                background-color: wheat !important;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                justify-content: center;
+                justify-self: center;
+                align-self: center;
+                align-content: center;
             }
 
             &__img {
@@ -37,11 +49,15 @@
 
     &__orders {
         display: grid;
-        padding-left: 200px;
-
-        padding-top: 100px !important;
+        padding-left: 90px;
+        width: 100%;
+        padding-top: 50px !important;
         height: 750px;
         overflow: scroll;
+
+        &__1 {
+            padding-left: 20px;
+        }
     }
 
     .MuiImageList-root .MuiImageList-standard .css-z3j1b2-MuiImageList-root {

@@ -32,158 +32,274 @@ import DialogTitle from '@mui/material/DialogTitle';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 import { useEffect, useState } from 'react';
+
 import Snackbar from '@mui/material/Snackbar';
 import axios from 'axios';
 
 
-// TABLE
-function createData(name, TotalPrice, Quantity, order) {
-    return {
-        name,
-        TotalPrice,
-        Quantity,
-        order: [
 
-        ],
-    };
-}
-// TABLE
-function Row(props) {
-    const { row } = props;
-    const [open, setOpen] = useState(false);
-
-    return (
-        // table
-        <React.Fragment>
-            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-                <TableCell>
-                    <IconButton
-                        aria-label="expand row"
-                        size="small"
-                        onClick={() => setOpen(!open)}
-                    >
-                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                    </IconButton>
-                </TableCell>
-                <TableCell component="th" scope="row">
-                    {row.name}
-                </TableCell>
-                <TableCell align="right">{row.TotalPrice}</TableCell>
-                <TableCell align="right">{row.Quantity}</TableCell>
-                <TableCell align="right">{row.Address}</TableCell>
-                <TableCell>
-                    <IconButton onClick={() => { alert("Dispatched!") }}>
-                        <LocalShippingRoundedIcon></LocalShippingRoundedIcon>
-                    </IconButton>
-                </TableCell>
-            </TableRow>
-            <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 1 }}>
-                            <Typography variant="h6" gutterBottom component="div">
-                                History
-                            </Typography>
-                            <Table size="small" aria-label="purchases">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Item Name</TableCell>
-                                        <TableCell>Price</TableCell>
-                                        <TableCell align="right">Item quantity</TableCell>
-                                        <TableCell align="right">Total price ($)</TableCell>
-                                        <TableCell align="right">Date</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {row.order.map((historyRow) => (
-                                        <TableRow key={historyRow.date}>
-                                            <TableCell component="th" scope="row">
-                                                {historyRow.Item}
-                                            </TableCell>
-                                            <TableCell>{historyRow.price}</TableCell>
-                                            <TableCell align="right">{historyRow.amount}</TableCell>
-                                            <TableCell align="right">
-                                                {Math.round(historyRow.price * historyRow.amount)}
-                                            </TableCell>
-                                            <TableCell align="right">{historyRow.date}</TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </Box>
-                    </Collapse>
-                </TableCell>
-            </TableRow>
-        </React.Fragment>
-    );
-}
-// TABLE
-Row.propTypes = {
-    row: PropTypes.shape({
-        name: PropTypes.number.isRequired,
-        TotalPrice: PropTypes.number.isRequired,
-        Quantity: PropTypes.number.isRequired,
-        Address: PropTypes.string.isRequired,
-        order: PropTypes.arrayOf(
-            PropTypes.shape({
-                amount: PropTypes.number.isRequired,
-                price: PropTypes.number.isRequired,
-                totalPrice: PropTypes.number.isRequired,
-                Item: PropTypes.string.isRequired,
-                date: PropTypes.string.isRequired,
-            }),
-        ).isRequired,
-    }).isRequired,
-};
-// TABLE
-const rows = [
-    createData('Shanre', 39000, 6, 'The way home'),
-
-];
-
-// GALLERY STOCK COMPONENT
-function srcset(image, width, height, rows = 2, cols = 4) {
-    return {
-        src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-        srcSet: `${image}?w=${width * cols}&h=${height * rows
-            }&fit=crop&auto=format&dpr=2 2x`,
-    };
-}
 
 
 
 
 export function AdminPage() {
 
-    const [products, setProducts] = useState([]);
-    const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
 
+    // TABLE
+    function createData(id, name, TotalPrice, Quantity, Address, orderDate, orders) {
+        return {
+            id,
+            name,
+            TotalPrice,
+            Quantity,
+            Address,
+            orderDate,
+            orders,
+        };
+    }
+
+    // // TABLE
+    // const rows = [
+    //     createData('Shanre', 39000, 6, 'The way home'),
+    //     createData('test', 39000, 6, 'The way home'),
+    // ];
+
+    // console.log(rows)
+
+    const [rows, setRows] = useState([]);
+    const [updateOrders, setUpdateOrders] = useState(false);
+    let totalPrice = JSON.parse(sessionStorage?.getItem("totalPrice"));
     useEffect(() => {
+        let items = []
+        let totalPrice = 0
+        // console.log(el);
 
-        Axios.get('http://localhost:5000/orders').then(res => {
-            let items = []
+        Axios.get('http://localhost:5000/orders/')
+            .then(res => {
 
-            let data = res.data;
-            console.log(data);
+                let data = res.data;
+                data.forEach(el => {
+                    console.log(data);
+                    let row = []
+                    let order = []
+                    let quantity = 0
+                    el.products[0].forEach(product => {
+                        // console.log(product)
+                        quantity = quantity + product.quantity
+                        let currentItem = []
+                        Axios.get('http://localhost:5000/product/' + product.productId)
+                            .then(res2 => {
+                                console.log(res2)
 
-            data.forEach(el => {
+                                currentItem = res2.data
+                                currentItem.quantity = product.quantity
+                                currentItem.productId = product.productId
+                                currentItem.printMedium = product.printMedium
+                                currentItem.size = product.size
+                                let itemPrice = 0
+                                console.log(currentItem.price);
 
-                let row = []
-                row = ({
+                                if (product.size == 1) {
+                                    itemPrice = currentItem.price.v0
+                                    currentItem.size = "A1 - 594 x 841 mm"
+                                }
+                                if (product.size == 2) {
+                                    itemPrice = currentItem.price.v1
+                                    currentItem.size = "A2 - 420 x 594 mm"
 
+                                }
+                                if (product.size == 3) {
+                                    itemPrice = currentItem.price.v2
+                                    currentItem.size = "A3 - 297 x 420 mm"
+                                }
+
+                                if (product.printMedium == 1) {
+                                    currentItem.printMedium = "Stretched Canvas"
+                                }
+                                if (product.printMedium == 2) {
+                                    currentItem.printMedium = "Loose Canvas"
+                                }
+                                if (product.printMedium == 3) {
+                                    currentItem.printMedium = "Matte Fine Art Paper"
+                                }
+
+                                currentItem.itemPrice = itemPrice
+
+                                order.push(currentItem)
+                                console.log(order);
+
+                            })
+
+                    })
+                    console.log(el.street);
+
+                    row = ({
+                        id: el._id,
+                        name: el.name,
+                        TotalPrice: el.totalPrice,
+                        Quantity: quantity,
+                        orders: order,
+                        Address: el.street + " " + el.country + " " + el.postalcode,
+                        orderDate: el.orderDate
+                    })
+
+
+                    items.push(createData(row.id, row.name, row.TotalPrice, row.Quantity, row.Address, row.orderDate, row.orders))
                 })
+                setUpdateOrders(false)
 
-                // items.push(createData()
 
             })
+        setRows(items)
+        console.log(items);
 
-            // setRows(items)
+    }, []);
+
+    function dispatch(id, orders) {
+        console.log(id)
+        console.log(orders)
+
+        orders.forEach(element => {
+
+            let payload = {
+                amount: element.quantity,
+            }
+
+            // payloadData.append("information", JSON.stringify(payload));
+
+            Axios.patch('http://localhost:5000/updateProduct/' + element.productId, payload).then(() => {
+                console.log("orders updated!")
+
+            }).catch(err => {
+                alert(err)
+            })
+
+        });
+
+        Axios.delete('http://localhost:5000/order/' + id)
+            .then(res => {
+                let data = res.data;
+                setUpdateOrders(true)
+            })
+
+        alert("Order sent for dispatch!")
+    }
+
+    function Row(props) {
+        const { row } = props;
+        const [open, setOpen] = useState(false);
+
+
+
+        return (
+            // table
+            <React.Fragment>
+                <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+                    <TableCell>
+                        <IconButton
+                            aria-label="expand row"
+                            size="small"
+                            onClick={() => setOpen(!open)}
+                        >
+                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                        </IconButton>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                        {row.name}
+                    </TableCell>
+                    <TableCell align="right">R{row.TotalPrice}.00</TableCell>
+                    <TableCell align="center">{row.Quantity}</TableCell>
+                    <TableCell align="center">{row.Address}</TableCell>
+                    <TableCell align="center">{row.orderDate}</TableCell>
+
+                    <TableCell style={{
+                        marginLeft: '30px'
+                    }}>
+                        <IconButton onClick={() => { dispatch(row.id, row.orders) }} style={{ color: 'green' }}>
+                            <LocalShippingRoundedIcon ></LocalShippingRoundedIcon>
+                        </IconButton>
+                    </TableCell>
+                </TableRow >
+                <TableRow>
+                    <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <Box sx={{ margin: 1 }}>
+                                <Typography variant="h6" gutterBottom component="div">
+                                    Orders
+                                </Typography>
+                                <Table size="small" aria-label="purchases">
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Item Name</TableCell>
+                                            <TableCell align="center">Item quantity</TableCell>
+                                            <TableCell align="center">Total price</TableCell>
+                                            <TableCell align="center">Size</TableCell>
+
+                                            <TableCell align="center">Print Medium </TableCell>
+
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {row.orders.map((historyRow) => (
+                                            <TableRow key={historyRow.productId}>
+                                                <TableCell component="th" scope="row" align="left">
+                                                    {historyRow.name}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {historyRow.quantity}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    R{historyRow.itemPrice}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {historyRow.size}
+                                                </TableCell>
+                                                <TableCell component="th" scope="row" align="center">
+                                                    {historyRow.printMedium}
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </Box>
+                        </Collapse>
+                    </TableCell>
+                </TableRow>
+            </React.Fragment >
+        );
+    }
+    // TABLE
+    Row.propTypes = {
+        row: PropTypes.shape({
+            name: PropTypes.number.isRequired,
+            TotalPrice: PropTypes.number.isRequired,
+            Quantity: PropTypes.number.isRequired,
+            Address: PropTypes.string.isRequired,
+            order: PropTypes.arrayOf(
+                PropTypes.shape({
+                    amount: PropTypes.number.isRequired,
+                    price: PropTypes.number.isRequired,
+                    totalPrice: PropTypes.number.isRequired,
+                    Item: PropTypes.string.isRequired,
+                }),
+            ).isRequired,
+        }).isRequired,
+    };
 
 
 
 
-        })
-    }, [])
+    // GALLERY STOCK COMPONENT
+    function srcset(image, width, height, rows = 2, cols = 4) {
+        return {
+            src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
+            srcSet: `${image}?w=${width * cols}&h=${height * rows
+                }&fit=crop&auto=format&dpr=2 2x`,
+        };
+    }
+
+    const [products, setProducts] = useState([]);
+    const [gatherRenderedProductInfo, setGatherRenderedProductInfo] = useState(false);
 
 
     const deleteProduct = (id, name) => {
@@ -202,11 +318,11 @@ export function AdminPage() {
         Axios.get('http://localhost:5000/products').then(res => {
 
             let data = res.data;
-            console.log(data);
+            // console.log(data);
             const photoItem = data.map((item) =>
-                <ImageListItem key={item._id} cols={1} rows={1}>
+                <ImageListItem key={item._id} cols={1} rows={2}>
 
-                    {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" + item.image)}
+                    {/* {console.log("Image", "http://localhost:5000/wildlifeGalleryImages/" + item.image)} */}
                     <img
                         {...srcset("http://localhost:5000/wildlifeGalleryImages/" + item.image, 300, 100, 1, 1)}
                         alt={item.name}
@@ -222,15 +338,15 @@ export function AdminPage() {
                         position="top"
                         actionIcon={
                             // Hoekom werk dit?!?!?!?!? Daai onClick met => function
-                            <Button variant="outlined" onClick={() => { deleteProduct(item._id, item.name) }} startIcon={<DeleteIcon />}>
-                                Delete
+                            <Button style={{ color: 'orange' }} variant="fill" onClick={() => { deleteProduct(item._id, item.name) }} startIcon={<DeleteIcon />}>
+
                             </Button>
                         }
                         actionPosition="left"
                     />
                 </ImageListItem>
             );
-            console.log(photoItem);
+            // console.log(photoItem);
             setProducts(photoItem)
             // setGatherProductInfo(photoItem)
             // om 'n infinite loop te stop
@@ -334,11 +450,11 @@ export function AdminPage() {
             {/* GALLERY STOCK */}
             <div className='adminpage__ingallery'>
                 <div className='adminpage__ingallery__addbtn'>
-                    <p>Admin, here you can add a new image with ease! Just click the Add Button!</p>
-                    <IconButton variant="contained" style={{ width: "200px", height: "40px", borderRadius: "10px", padding: "10px" }} onClick={handleClickOpen}>
-                        <Typography variant="p" component="div" className='adminpage__ingallery__addbtn__add'>
-                            add new product
-                        </Typography>
+                    <div className='adminpage__ingallery__addbtn__1'> <h4 style={{ textAlign: 'center' }}>Admin, you can add a new item down below! <br></br></h4></div>
+                    <IconButton variant="contained" style={{ width: "200px", height: "40px", borderRadius: "10px", padding: "16px", marginTop: '20px' }} onClick={handleClickOpen} className='adminpage__ingallery__addbtn__add'>
+                        <p>
+                            ADD ITEM
+                        </p>
                         <AddPhotoAlternateRoundedIcon fontSize="large" />
                     </IconButton>
                 </div>
@@ -452,9 +568,9 @@ export function AdminPage() {
                     onClose={() => setOpenSnackbar(false)}
                     message="Product Added!"
                 />
-                <ImageList
+                <ImageList style={{ marginTop: '100px', position: 'sticky' }}
                     sx={{
-                        width: 900,
+                        width: 600,
                         height: 750,
                         // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
                         transform: 'translateZ(0)',
@@ -469,7 +585,7 @@ export function AdminPage() {
 
             {/* TABLE */}
             <div className='adminpage__orders'>
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} className='adminpage__orders__1'>
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
@@ -477,7 +593,8 @@ export function AdminPage() {
                                 <TableCell>Name</TableCell>
                                 <TableCell align="right">TotalPrice</TableCell>
                                 <TableCell align="right">Quantity</TableCell>
-                                <TableCell align="right">Address</TableCell>
+                                <TableCell align="center">Address</TableCell>
+                                <TableCell align="center">Date</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>

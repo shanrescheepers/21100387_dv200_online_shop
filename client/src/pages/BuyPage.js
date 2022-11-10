@@ -81,9 +81,9 @@ export function BuyPage() {
             postalcode: addProduct.postalcode,
             street: addProduct.street,
             country: addProduct.country,
-            products: [
-                currentStockInSession
-            ]
+            totalPrice: totalPrice + 100,
+
+            products: [currentStockInSession]
         }
 
         payloadData.append("information", JSON.stringify(payload));
@@ -111,7 +111,7 @@ export function BuyPage() {
                     autoComplete="on"
                 >
                     <form className='userInfo__box__userinputs' >
-                        <p>Please add your details below to continue to your cart checkout!</p>
+                        <h2>Please add your details below to continue to your cart checkout!</h2>
                         <TextField className='userInfo__box__userinputs__boxes'
                             margin="normal"
                             name="name"
@@ -209,10 +209,10 @@ export function BuyPage() {
                 </Box>
                 <div className='userInfo__totals'>
                     <h3>Shipment Fee :<br></br> </h3>
-                    <p>R100</p>
+                    <p>R 100.00</p>
                     <hr></hr>
                     <h3>Total to Pay :</h3>
-                    <p>R{totalPrice + 100}</p>
+                    <p>R {totalPrice + 100}.00</p>
 
                     <div className='userInfo__totals__buybutton'>
                         <IconButton aria-label="Buy Now" color="primary" onClick={() => { buyNow() }} >

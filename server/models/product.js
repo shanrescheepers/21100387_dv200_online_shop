@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let newDate = new Date();
 const ProductSchema = mongoose.Schema({
-    date:{ type: Number},
+    date: { type: Number },
     description: {
         type: String,
         required: true
@@ -11,24 +11,24 @@ const ProductSchema = mongoose.Schema({
         required: true
     },
     price: {
-        v0: { type: Number,required: true},
-        v1: { type: Number,required: true},
-        v2: { type: Number,required: true},
+        v0: { type: Number, required: true },
+        v1: { type: Number, required: true },
+        v2: { type: Number, required: true },
     },
     discount: {
         type: Number,
         required: false
     },
     printMedium: {
-        v0: { type: String,required: true},
-        v1: { type: String,required: true},
-        v2: { type: String,required: true},
+        v0: { type: String, required: true },
+        v1: { type: String, required: true },
+        v2: { type: String, required: true },
     },
- 
+
     size: {
-        v0: { type: String,required: true},
-        v1: { type: String,required: true},
-        v2: { type: String,required: true},
+        v0: { type: String, required: true },
+        v1: { type: String, required: true },
+        v2: { type: String, required: true },
     },
     artist: {
         type: String,
@@ -42,7 +42,7 @@ const ProductSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    image: {type: String,required: true}
+    image: { type: String, required: true }
 });
 
 const Product = mongoose.model("Product", ProductSchema);

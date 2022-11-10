@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 let newDate = new Date();
 const OrdersSchema = mongoose.Schema({
-    date:{ type: Number},
+    orderDate: { type: Date, default: Date.now },
     name: {
         type: String,
         required: true
@@ -12,6 +12,10 @@ const OrdersSchema = mongoose.Schema({
     },
     email: {
         type: String,
+        required: true
+    },
+    totalPrice: {
+        type: Number,
         required: true
     },
     postalcode: {
@@ -26,10 +30,10 @@ const OrdersSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    products:[
+    products: [
 
     ]
-    
+
 });
 
 const Orders = mongoose.model("Orders", OrdersSchema);

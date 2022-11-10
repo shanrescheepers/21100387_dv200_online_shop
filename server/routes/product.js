@@ -141,13 +141,17 @@ router.delete("/product/:id", async (req, res) => {
 //     return res.status(200).json(updatedDog);
 //   });
 
-// router.patch('/api/updateProduct/:id', async (req, res) => {
-//     const updroduct = await productSchema.updateOne(
-//         { _id: req.params.id },
-//         { $set: { productName: req.body.productName } }
-//     )
-//     res.json(updroduct);
-// })
+router.patch('/updateProduct/:id', async (req, res) => {
+    const products = await Product.findById(req.params.id)
+
+    let amount = products.stock - req.body.amount
+    console.log("amount", products.stock, req.body.amount, amount)
+    const updroduct = await Product.updateOne(
+        { _id: req.params.id },
+        { $set: { stock: amount } }
+    )
+    res.json(updroduct);
+})
 
 
 module.exports = router;

@@ -13,7 +13,7 @@ import chrisjan from '../image folder/chrischris.svg'
 import cathan from '../image folder/catcat.svg'
 import rhino from '../image folder/rhinobaby.svg'
 import { useEffect, useState } from 'react';
-
+import ArrowCircleUpRoundedIcon from '@mui/icons-material/ArrowCircleUpRounded';
 import pangolin from '../image folder/1-1-12.jpg'
 import rangers from '../image folder/IMG_0991.jpg'
 import rangers1 from '../image folder/IMG_3199.JPG'
@@ -109,7 +109,7 @@ export function Homepage() {
     }
 
     return (
-        <div className='homepage'>
+        <div className='homepage' id='totop'>
             <div className='homepage__backgroundimg' >
                 {/* <img src={bg} className="homepage__backgroundimg__img" /> */}
 
@@ -207,8 +207,12 @@ export function Homepage() {
                 <div className='homepage__newfeatureditems__newdiscounts'>
                     <h2 className='homepage__newfeatureditems__newdiscounts__h2'>DISCOUNTED ARTWORKS</h2><hr></hr>
                     <div className='homepage__newfeatureditems__newlatest__carousel'>   <Featureddiscountitemcarousel></Featureddiscountitemcarousel></div>
+
                 </div>
+                <div className='homepage__newfeatureditems__totop'>  <a href='#totop' style={{ color: 'black' }}> <ArrowCircleUpRoundedIcon style={{ height: '50px', width: '50px', }}></ArrowCircleUpRoundedIcon></a>
+                    <p>BACK TO TOP</p></div>
             </div>
+
         </div>
 
 

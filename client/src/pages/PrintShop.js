@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import '../scss/printShop.scss';
 import IndividualProductCard from '../components/ProductCards';
-
+import ArrowCircleUpRoundedIcon from '@mui/icons-material/ArrowCircleUpRounded';
 
 
 export function ShopImages() {
@@ -40,7 +40,7 @@ export function ShopImages() {
 
 
     return (
-        <div className='shop'>
+        <div className='shop' id='totop'>
             <h2 className='shop__info'>
                 PRINT RANGE
             </h2>
@@ -51,6 +51,11 @@ export function ShopImages() {
             <div className='shop__image-container'>
                 {gatherProductInfo}
 
+            </div>
+            <div className='endofgallery'>
+                <h3>    ~ End of Gallery ~</h3>
+                <a href='#totop' style={{ color: 'black' }}> <ArrowCircleUpRoundedIcon style={{ height: '50px', width: '50px', }}></ArrowCircleUpRoundedIcon></a>
+                <p>BACK TO TOP</p>
             </div>
         </div>
     );

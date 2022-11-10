@@ -9,7 +9,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import '../scss/productPage.scss';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InfoIcon from '@mui/icons-material/Info';
 let productCart = []
 const ProductPage = () => {
     let navigate = useNavigate();
@@ -24,8 +28,8 @@ const ProductPage = () => {
         let payload = {
             productId: product.id,
             quantity: 1,
-            printMedium: 1,
-            size: 1
+            printMedium: printmedium,
+            size: size
         }
         console.log("Product", product.id);
         console.log("Payload", payload);
@@ -70,6 +74,7 @@ const ProductPage = () => {
         // console.log(productCart);
         sessionStorage.setItem('productCart', JSON.stringify(currentCart));
         // console.log(sessionStorage.getItem("productCart"));
+        alert("Added to cart!")
     }
 
     useEffect(() => {
@@ -108,42 +113,95 @@ const ProductPage = () => {
 
             })
     }, []);
+    const [size, setSize] = React.useState('');
+    const [printmedium, setPrintmedium] = React.useState('');
 
+    const handleChange = (event) => {
+        setSize(event.target.value);
+    };
+    const handleMediumChange = (event) => {
+        setPrintmedium(event.target.value);
+    };
     return (
         <div className='cards'>
             <Card >
                 <CardMedia
                     component="img"
                 />
-                <CardContent>
+                <CardContent className='cards__info'>
                     <Typography gutterBottom variant="p" component="div">
-                        <img src={image} style={{ width: "auto", height: "400px" }} />
-                        <h3 >"{product.name}"</h3>
-                        <h3 >Description ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.description}</span></h3>
-                        <h3>Discount ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>R {product.discount}.00</span></h3>
-                        <h3>Artist ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.artist}</span></h3>
-                        <h3>Category ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.category}</span></h3>
-                        <h4>Stock ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.stock}</span></h4>
-                        <Button onClick={() => { addCart() }}><AddCircleIcon style={{ color: "green", height: "30px", paddingRight: "10px" }} size="large"> <button ></button ></AddCircleIcon>
-                            <p style={{ color: "green" }}>Add to Cart</p>
-                        </Button>
+                        <img className='cards__info__img' src={image} style={{ width: "auto", height: "300px", textAlign: 'center' }} />
+                        <h1 style={{ paddingLeft: '200px' }}>"{product.name}"</h1>
+                        <hr style={{ marginLeft: '100px', width: '500px' }}></hr>
+                        <h3 className='cards__info'>Description  <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.description}</span></h3>
+
+                        <h3 className='cards__info'>Artist  <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.artist}</span></h3>
+                        <h3 className='cards__info'>Category  <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.category}</span></h3>
+                        <h4 className='cards__info'>Stock  <span style={{ color: "#B6AF93", fontFamily: "intro", }}>{product.stock}</span></h4>
+
                     </Typography>
                 </CardContent>
             </Card>
             <div className='card__print'>
+
+                <ul className='card__print__rightpanel'>
+                    <div className='card__print__rightpanel__alert'> <InfoIcon style={{ height: '15px' }} /> Have a look if your chosen print has a discounted price attatched!
+                    </div>
+                    <br></br>
+                    <p className='card__print__rightpanel'>Once you're satisfied with your print choice, please select your print size and medium. <br></br>Dependant on your choices, the price will adjust.</p>
+                </ul>
+
                 <Typography className='card__prints'>
+                    <h3>Discount ━ <span style={{ color: "#B6AF93", fontFamily: "intro", }}>R  {product.discount} .00</span></h3>
+
                     <div className='prints__printsize'>
-                        <h4>PRINT SIZES</h4>
+
+                        <FormControl sx={{ m: 3, minWidth: 190 }} size="large">
+                            <InputLabel id="demo-select-small">PRINT SIZES</InputLabel>
+                            <Select
+                                labelId="demo-select-small"
+                                id="demo-select-small"
+                                value={size}
+                                label="Sizes"
+                                onChange={handleChange}
+                            >
+
+                                <MenuItem value={1}>{product?.size?.v0} = R {product?.price?.v0}.00</MenuItem>
+                                <MenuItem value={2}>{product?.size?.v1} = R {product?.price?.v1}.00</MenuItem>
+                                <MenuItem value={3}>{product?.size?.v2} = R {product?.price?.v2}.00y</MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        {/*                    
                         <p>SIZE {product?.size?.v0} = R {product?.price?.v0}.00</p>
                         <p >SIZE {product?.size?.v1} = R {product?.price?.v1}.00</p>
-                        <p>SIZE {product?.size?.v2} = R {product?.price?.v2}.00</p>
+                        <p>SIZE {product?.size?.v2} = R {product?.price?.v2}.00</p> */}
                     </div>
                     <div className='prints__printmediums'>
-                        <h4 > PRINT MEDIUMS</h4>
-                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v0}</p>
+                        <FormControl sx={{ m: 3, minWidth: 190 }} size="large">
+                            <InputLabel id="demo-select-small">PRINT MEDIUMS</InputLabel>
+                            <Select
+                                labelId="demo-select-small"
+                                id="demo-select-small"
+                                value={printmedium}
+                                label="Sizes"
+                                onChange={handleMediumChange}
+                            >
+
+                                <MenuItem value={1}>{product?.printMedium?.v0}</MenuItem>
+                                <MenuItem value={2}>{product?.printMedium?.v1}</MenuItem>
+                                <MenuItem value={3}>{product?.printMedium?.v2}</MenuItem>
+                            </Select>
+                        </FormControl>
+
+                        {/* <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v0}</p>
                         <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v1}</p>
-                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v2}</p>
+                        <p style={{ fontFamily: "intro", letterSpacing: "3px" }}>{product?.printMedium?.v2}</p> */}
                     </div>
+                    <h2>Happy with your choice? Go ahead and Add it to your cart!</h2>
+                    <Button onClick={() => { addCart() }}><AddCircleIcon style={{ color: "green", height: "30px", paddingRight: "10px" }} size="large"> <button ></button ></AddCircleIcon>
+                        <p style={{ color: "green" }}>Add to Cart</p>
+                    </Button>
                 </Typography>
             </div>
         </div >

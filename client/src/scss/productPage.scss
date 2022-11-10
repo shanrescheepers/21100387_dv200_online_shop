@@ -1,14 +1,47 @@
 .cards {
     display: grid;
-    height: 1200px !important;
-    grid-gap: 32px;
+    padding-top: 50px;
+    grid-template-columns: 50% 50%;
+
+    &__info {
+        display: grid;
+        grid-template-columns: 500px 200px;
+        text-align: center;
+        justify-content: center;
+
+        &__img {
+            padding-left: 120px;
+        }
+    }
 
     &__print {
+        display: grid;
+
+
+        &__rightpanel {
+            padding: 8px;
+            display: grid;
+            width: 200px;
+            text-align: left;
+
+            &__alert {
+                text-align: left;
+                align-items: center;
+                align-self: center;
+                align-content: center;
+                justify-items: center;
+                justify-content: center;
+                justify-self: center;
+                float: left;
+            }
+        }
+
         &__prints {
             display: grid;
-            grid-template-columns: 50% 50%;
             height: 500px;
         }
+
+
     }
 
     &__prints {

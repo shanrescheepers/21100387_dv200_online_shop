@@ -85,9 +85,6 @@ const CartPage = () => {
 
     const [totalPrice, setTotalPrice] = useState(0);
 
-
-
-
     // TABLE
     function Row(props) {
         const { row } = props;
@@ -128,12 +125,16 @@ const CartPage = () => {
                 totalPrice = totalPrice + element.activePrice
             }
 
+            if (rows.length == 0) {
+                totalPrice = 0
+            }
             setTotalPrice(totalPrice)
             console.log(totalPrice);
         }
 
         const deleteProduct = (id, name) => {
             let tempRows = []
+            setTotalPrice(0)
 
             // setRows([])
 
@@ -536,10 +537,10 @@ const CartPage = () => {
             </div>
 
             <div style={{ bottom: "0", textAlign: "right", marginRight: "40px" }}>
-                <h3>Total Price: R{totalPrice}</h3>
+                <h3>Total Price: R {totalPrice}.00</h3>
 
                 <IconButton aria-label="Checkout" color="primary" onClick={() => { buyPage() }}>
-                    <ShoppingBagIcon /> Checkout
+                    <ShoppingBagIcon />  Checkout
                 </IconButton>
             </div>
 

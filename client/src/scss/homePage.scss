@@ -3,15 +3,21 @@
     height: fit-content;
 
     &__newfeatureditems {
-        padding-left: 32px;
+        padding-left: 350px;
         justify-self: center;
         padding-top: 32px;
         display: grid;
-        grid-template-columns: 200px 100px 200px;
+        grid-template-columns: 170px 300px 300px 200px;
         align-items: center;
         text-align: center;
         justify-items: center;
-        grid-gap: 32px;
+        grid-gap: 8px;
+
+        &__totop {
+            margin-top: 700px;
+            margin-bottom: -200px;
+            margin-left: 50px;
+        }
 
         &__newdiscounts {
             display: grid;
@@ -21,6 +27,7 @@
             align-items: center;
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr;
+            padding-left: 30px;
 
             &__h2 {
                 font-size: 25px;
@@ -39,7 +46,7 @@
         &__vl {
             border-left: 1px solid rgb(0, 0, 0);
             height: 200px;
-            margin-top: 30px;
+
 
 
         }
@@ -430,4 +437,7 @@
         overflow: hidden;
     }
 
+    // .backtotop {
+    //     padding-left: 30px;
+    // }
 }
